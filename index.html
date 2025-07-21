@@ -1,0 +1,186 @@
+<!-- Ultimate Accessible Wireframe for ConnectCRM -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ConnectCRM - Never Miss an Interaction</title>
+  <style>
+    :root {
+      --bg-light: #f8f9fa;
+      --bg-dark: #121212;
+      --card-light: #ffffff;
+      --card-dark: #1e1e1e;
+      --accent-light: #007aff;
+      --accent-dark: #1db954;
+      --text-light: #333333;
+      --text-dark: #e0e0e0;
+      --muted-light: #666666;
+      --muted-dark: #a0a0a0;
+      --radius: 8px;
+      --shadow: rgba(0,0,0,0.1);
+    }
+    [data-theme="dark"] { --bg: var(--bg-dark); --card: var(--card-dark); --accent: var(--accent-dark); --text: var(--text-dark); --muted: var(--muted-dark); }
+    [data-theme="light"] { --bg: var(--bg-light); --card: var(--card-light); --accent: var(--accent-light); --text: var(--text-light); --muted: var(--muted-light); }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height:1.6; }
+    a { color: var(--accent); text-decoration: none; transition: color .2s; }
+    a:hover, a:focus { color: darken(var(--accent),10%); outline: none; }
+    .container { width: 90%; max-width: 960px; margin: 0 auto; padding: 40px 0; }
+    .skip-nav { position:absolute; top:-40px; left:0; background:var(--accent); color:#fff; padding:8px; z-index:100; }
+    .skip-nav:focus { top:0; }
+    header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+    .logo { font-size: 1.75rem; font-weight: 600; }
+    nav { display: flex; gap:20px; }
+    .theme-toggle { margin-left:20px; cursor:pointer; }
+    .hero { text-align: center; margin-bottom: 60px; opacity:0; transform: translateY(20px); transition:opacity .6s ease, transform .6s ease; }
+    .hero.visible { opacity:1; transform: translateY(0); }
+    .hero h1 { font-size: 2.5rem; margin-bottom: 16px; }
+    .hero p { font-size: 1.125rem; color: var(--muted); margin-bottom: 24px; }
+    .btn { display: inline-block; padding: 12px 24px; background: var(--accent); color: #fff; border-radius: var(--radius); font-weight: 600; transition: background .2s; }
+    .btn:hover, .btn:focus { background: darken(var(--accent),10%); }
+
+    section { margin-bottom: 60px; }
+    .grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); }
+    .card { background: var(--card); border-radius: var(--radius); padding: 24px; box-shadow: 0 2px 8px var(--shadow); transition: border 0.3s, box-shadow 0.3s; }
+    .card:hover, .card:focus-within, .card.selected { border: 2px solid var(--accent); box-shadow:0 4px 16px var(--shadow); outline:none; }
+    .card h3 { margin-bottom: 12px; }
+    .card p { color: var(--muted); }
+
+    .plans .card { cursor: pointer; }
+    #toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #fff; padding: 12px 24px; border-radius: var(--radius); opacity: 0; transition: opacity .5s; aria-live:polite; }
+
+    form { display: grid; gap: 16px; max-width: 600px; width: 100%; margin: 0 auto; }
+    .error { color: red; font-size: 0.875rem; }
+    form input[type=text], form input[type=email], form input[type=tel] {width:100%; padding: 12px; border: 1px solid #ccc; border-radius: var(--radius); }
+    form input[type=submit] { padding: 12px; background: var(--accent); color: #fff; border:none; border-radius: var(--radius); font-weight: 600; transition: background .2s; }
+    form input[type=submit]:hover, form input[type=submit]:focus { background: darken(var(--accent),10%); }
+
+    footer { text-align: center; color: var(--muted); font-size: 0.875rem; margin-top: 60px; }
+    .wa-button { position: fixed; bottom: 20px; right: 20px; width: 56px; height: 56px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px var(--shadow); text-decoration: none; font-size: 28px; color: #fff; outline:none; }
+    .wa-button:focus { box-shadow: 0 0 0 3px var(--accent-hover); }
+  </style>
+</head>
+<body data-theme="light">
+  <a href="#hero" class="skip-nav">Skip to content</a>
+  <div class="container">
+    <header>
+      <div class="logo">ConnectCRM</div>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#usecases">Use Cases</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#signup">Sign Up</a>
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle light dark mode">🌓</button>
+      </nav>
+    </header>
+
+    <section id="hero" class="hero">
+      <h1>Never Miss Another Chat</h1>
+      <p>Capture leads, automate follow‑ups and close deals—all within WhatsApp.</p>
+      <button class="btn" onclick="scrollToSection('pricing')">View Plans</button>
+    </section>
+
+    <section id="features">
+      <h2>Key Features</h2>
+      <div class="grid">
+        <div class="card" role="button" tabindex="0"><h3>Auto Lead Capture</h3><p>Every chat becomes a tracked lead automatically.</p></div>
+        <div class="card" role="button" tabindex="0"><h3>Smart Routing</h3><p>AI‑driven assignment gets messages to the right rep instantly.</p></div>
+        <div class="card" role="button" tabindex="0"><h3>Insight Dashboard</h3><p>Real‑time metrics on conversation and conversion rates.</p></div>
+      </div>
+    </section>
+
+    <section id="usecases">
+      <h2>Industry Use Cases</h2>
+      <div class="grid">
+        <div class="card"><h3>Banking</h3><p>Secure transaction alerts and customer queries in one thread.</p></div>
+        <div class="card"><h3>Retail</h3><p>Drive personalized promotions and order updates via chat.</p></div>
+        <div class="card"><h3>Telco</h3><p>Manage service issues and plan upgrades seamlessly.</p></div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <h2>Choose Your Plan</h2>
+      <div class="grid plans">
+        <div class="card" data-plan="Starter" onclick="selectPlan(this)" role="button" tabindex="0"><h3>Starter</h3><p>₦15,000/mo</p><p>Up to 500 msgs</p></div>
+        <div class="card" data-plan="Professional" onclick="selectPlan(this)" role="button" tabindex="0"><h3>Professional</h3><p>₦45,000/mo</p><p>Up to 2,000 msgs</p></div>
+        <div class="card" data-plan="Enterprise" onclick="selectPlan(this)" role="button" tabindex="0"><h3>Enterprise</h3><p>Custom pricing</p><p>Unlimited msgs</p></div>
+      </div>
+    </section>
+
+    <<section id="signup" class="signup">
+      <h2 style="text-align:center;"Start Your Free Trial/h2>>
+      <form onsubmit="return submitForm()">
+        <input type="hidden" id="planField" name="plan" value="">
+        <div>
+          <input type="text" id="company" name="company" placeholder="Company Name" required>
+          <div id="companyError" class="error" aria-live="polite"></div>
+        </div>
+        <div>
+          <input type="email" id="email" name="email" placeholder="Email Address" required>
+          <div id="emailError" class="error" aria-live="polite"></div>
+        </div>
+        <div>
+          <input type="tel" id="phone" name="phone" placeholder="Phone Number" required pattern="\+?\d{10,15}">
+          <div id="phoneError" class="error" aria-live="polite"></div>
+        </div>
+        <input type="submit" id="submitBtn" value="Start Free Trial" class="btn">
+      </form>
+    </section>
+
+    <div id="toast" aria-live="polite">Plan selected</div>
+
+    <footer>
+      <p><strong>Oricell Internet Services Ltd</strong></p>
+      <p>17 Keffi St, Lagos Island, Lagos 106104, Nigeria</p>
+      <p>Phone: +234 706 041 9725 | Email: <a href="mailto:info@234.ventures" style="color:var(--accent);">info@234.ventures</a></p>
+      <p>&copy; 2025 Oricell Internet Services Ltd. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <a href="https://wa.me/2347060419725" target="_blank" class="wa-button" aria-label="Chat with us on WhatsApp">💬</a>
+
+  <script>
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+    function toggleTheme() {
+      const body = document.body;
+      const newTheme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      body.setAttribute('data-theme', newTheme);
+    }
+    function selectPlan(el) {
+      document.querySelectorAll('.plans .card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      document.getElementById('planField').value = el.dataset.plan;
+      document.getElementById('submitBtn').value = 'Start ' + el.dataset.plan + ' Trial';
+      scrollToSection('signup');
+      const toast = document.getElementById('toast');
+      toast.textContent = el.dataset.plan + ' plan selected';
+      toast.style.opacity = '1';
+      setTimeout(() => toast.style.opacity = '0', 2000);
+    }
+    function validateField(id, errorId, message) {
+      const field = document.getElementById(id);
+      const error = document.getElementById(errorId);
+      if (!field.checkValidity()) { error.textContent = message; return false; }
+      error.textContent = '';
+      return true;
+    }
+    function submitForm() {
+      let valid = true;
+      valid &= validateField('company','companyError','Company is required');
+      valid &= validateField('email','emailError','Valid email is required');
+      valid &= validateField('phone','phoneError','Valid phone required');
+      if (!document.getElementById('planField').value) {
+        alert('Please select a plan first'); return false;
+      }
+      if (!valid) return false;
+      alert('Thanks for signing up for ' + document.getElementById('planField').value + ' trial!');
+      return false;
+    }
+    document.addEventListener('DOMContentLoaded', () => document.getElementById('hero').classList.add('visible'));
+  </script>
+</body>
+</html>
