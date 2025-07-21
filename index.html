@@ -494,13 +494,24 @@
     <i class="fab fa-whatsapp"></i>
   </a>
 
-<!-- Exit‑Intent Discount Modal -->
-<div id="exitPopup" class="popup" role="dialog" aria-modal="true" aria-labelledby="exitPopupTitle" aria-hidden="true">
+<div
+  id="exitPopup"
+  class="popup"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="exitPopupTitle"
+  aria-hidden="true"
+>
   <div class="popup-content" role="document">
-    <button class="popup-close" onclick="closePopup()" aria-label="Close discount offer">&times;</button>
+    <button
+      class="popup-close"
+      onclick="closePopup()"
+      aria-label="Close discount offer"
+    >&times;</button>
     <h3 id="exitPopupTitle">Hold On—Enjoy 10% Off!</h3>
     <p>Subscribe now to claim your exclusive discount code for the first three months.</p>
-    <form action="https://formspree.io/f/mzzvdlra" method="POST" onsubmit="return submitPopupForm()">
+
+    <form id="exitPopupForm">
       <label for="popupEmail" class="visually-hidden">Email Address</label>
       <input
         type="email"
@@ -508,14 +519,36 @@
         name="email"
         placeholder="you@example.com"
         required
-        aria-required="true">
+        aria-required="true"
+      >
       <button type="submit" class="btn btn-primary">Send My Discount</button>
+      <p id="popupStatus" role="status" aria-live="polite"></p>
     </form>
   </div>
 </div>
 
 
   <script>
+
+      document.getElementById('exitPopupForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const email = document.getElementById('popupEmail').value;
+    const statusEl = document.getElementById('popupStatus');
+    statusEl.textContent = 'Sending…';
+
+    try {
+      const res = await fetch('https://formspree.io/f/mzzvdlra', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+      if (!res.ok) throw new Error(res.statusText);
+      statusEl.textContent = 'Success! Check your inbox for the code.';
+    } catch (err) {
+      statusEl.textContent = 'Oops, something went wrong. Please try again.';
+      console.error(err);
+    }
+  });
     // Plan selection
     function selectPlan(index) {
       document.querySelectorAll('.plan').forEach((p,i) => {
