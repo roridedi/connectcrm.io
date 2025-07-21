@@ -494,18 +494,26 @@
     <i class="fab fa-whatsapp"></i>
   </a>
 
-  <!-- Exit Intent Popup -->
-  <div id="exit-popup" class="popup">
-    <div class="popup-content">
-      <span class="popup-close" onclick="closePopup()">&times;</span>
-      <h3>Wait! Get 10% Off Your First 3 Months</h3>
-      <p>Enter your email to receive your exclusive discount code</p>
-      <form action="https://formspree.io/f/mzzvdlra" method="POST">
-        <input type="email" placeholder="Your email address" required>
-        <button type="submit" class="btn btn-primary">Get My Discount</button>
-      </form>
-    </div>
+<!-- Exit‑Intent Discount Modal -->
+<div id="exitPopup" class="popup" role="dialog" aria-modal="true" aria-labelledby="exitPopupTitle" aria-hidden="true">
+  <div class="popup-content" role="document">
+    <button class="popup-close" onclick="closePopup()" aria-label="Close discount offer">&times;</button>
+    <h3 id="exitPopupTitle">Hold On—Enjoy 10% Off!</h3>
+    <p>Subscribe now to claim your exclusive discount code for the first three months.</p>
+    <form action="https://formspree.io/f/mzzvdlra" method="POST" onsubmit="return submitPopupForm()">
+      <label for="popupEmail" class="visually-hidden">Email Address</label>
+      <input
+        type="email"
+        id="popupEmail"
+        name="email"
+        placeholder="you@example.com"
+        required
+        aria-required="true">
+      <button type="submit" class="btn btn-primary">Send My Discount</button>
+    </form>
   </div>
+</div>
+
 
   <script>
     // Plan selection
