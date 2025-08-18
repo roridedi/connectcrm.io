@@ -2,178 +2,170 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6EQ7KEZF8"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-P6EQ7KEZF8'); 
-</script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6EQ7KEZF8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-P6EQ7KEZF8');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ConnectCRM - WhatsApp CRM Automation for Nigerian Businesses</title>
   <meta name="description" content="Automate WhatsApp conversations, capture leads, and boost sales. ConnectCRM helps Nigerian businesses never miss another chat opportunity.">
   <link rel="canonical" href="https://connectcrm.ng" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
-    :root {
-      --primary-start: #ff416c;
-      --primary-end: #ff4b2b;
-      --text: #363636;
-      --muted: #777;
-      --bg: #ffffff;
-      --bg-alt: #f2f2f2;
-      --radius: 12px;
-      --spacing: 20px;
-      --shadow: rgba(0,0,0,0.1);
-      --shadow-hover: rgba(0,0,0,0.2);
+    :root{
+      --primary-start:#ff416c;
+      --primary-end:#ff4b2b;
+      --text:#363636;
+      --muted:#777;
+      --bg:#ffffff;
+      --bg-alt:#f6f7f9;
+      --radius:12px;
+      --spacing:20px;
+      --shadow:rgba(0,0,0,.08);
+      --shadow-hover:rgba(0,0,0,.18);
+      --card-bg:#fff;
+      --ok:#0dbd7d;
+      --warn:#ffb020;
     }
-    
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Poppins', sans-serif; color: var(--text); background: var(--bg); line-height:1.6; scroll-behavior: smooth; }
-    .container { width: 90%; max-width:1200px; margin:0 auto; padding: var(--spacing) 0; }
-    
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Poppins',sans-serif;color:var(--text);background:var(--bg);line-height:1.6;scroll-behavior:smooth}
+    .container{width:92%;max-width:1200px;margin:0 auto;padding:var(--spacing) 0}
+    .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+
     /* Header */
-    header { padding: 20px 0; position: fixed; width: 100%; background: white; box-shadow: 0 2px 10px var(--shadow); z-index: 1000; }
-    .header-container { display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 1.8rem; font-weight: 700; background: linear-gradient(90deg, var(--primary-start), var(--primary-end)); -webkit-background-clip: text; color: transparent; }
-    nav ul { display: flex; list-style: none; gap: 30px; }
-    nav a { text-decoration: none; color: var(--text); font-weight: 500; transition: color 0.3s; }
-    nav a:hover { color: var(--primary-start); }
-    .nav-btn { background: linear-gradient(90deg, var(--primary-start), var(--primary-end)); color: white; padding: 10px 20px; border-radius: var(--radius); }
-    
+    header{padding:16px 0;position:fixed;width:100%;background:#fff;box-shadow:0 2px 10px var(--shadow);z-index:1000}
+    .header-container{display:flex;justify-content:space-between;align-items:center}
+    .logo{font-size:1.6rem;font-weight:700;background:linear-gradient(90deg,var(--primary-start),var(--primary-end));-webkit-background-clip:text;color:transparent}
+    nav ul{display:flex;list-style:none;gap:26px}
+    nav a{text-decoration:none;color:var(--text);font-weight:500}
+    nav a:hover{color:var(--primary-start)}
+    .nav-btn{background:linear-gradient(90deg,var(--primary-start),var(--primary-end));color:#fff;padding:10px 16px;border-radius:10px}
+
     /* Hero */
-    .hero { text-align:center; padding: 180px 0 100px; background: linear-gradient(-45deg, #ff416c, #ff4b2b, #fc00ff, #00dbde); background-size: 400% 400%; animation: gradientBG 15s ease infinite; border-radius: 0 0 var(--radius) var(--radius); color: #fff; margin-bottom: calc(var(--spacing)*3); }
-    .hero h1 { font-size: 3rem; margin-bottom: var(--spacing); line-height: 1.2; }
-    .hero p { font-size: 1.25rem; color: rgba(255,255,255,0.9); margin-bottom: calc(var(--spacing)*1.5); max-width: 700px; margin-left: auto; margin-right: auto; }
-    
+    .hero{text-align:center;padding:160px 0 84px;background:linear-gradient(-45deg,#ff416c,#ff4b2b,#fc00ff,#00dbde);background-size:400% 400%;animation:gradientBG 15s ease infinite;border-radius:0 0 var(--radius) var(--radius);color:#fff;margin-bottom:56px}
+    .hero h1{font-size:2.7rem;margin-bottom:14px;line-height:1.2}
+    .hero p{font-size:1.1rem;color:rgba(255,255,255,.92);max-width:720px;margin:10px auto 24px}
+
     /* Buttons */
-    .btn { background: #fff; color: var(--primary-start); padding: 16px 32px; border:none; border-radius: var(--radius); font-weight:600; transition: all 0.3s; cursor: pointer; font-size: 1rem; display: inline-block; }
-    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px var(--shadow-hover); }
-    .btn-primary { background: linear-gradient(90deg, var(--primary-start), var(--primary-end)); color: white; }
-    .btn-primary:hover { color: white; transform: translateY(-3px); box-shadow: 0 10px 20px var(--shadow-hover); }
-    .cta-pulse { animation: pulse 2s infinite; }
-    
-    /* Features */
-    .features { padding: 80px 0; }
-    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing); }
-    .feature { text-align:center; padding: 40px 20px; border-radius: var(--radius); transition: transform 0.3s; }
-    .feature:hover { transform: translateY(-10px); }
-    .feature-icon { font-size: 2.5rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, var(--primary-start), var(--primary-end)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .feature h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary-start); }
-    .feature p { color: var(--muted); }
-    
+    .btn{background:#fff;color:var(--primary-start);padding:14px 24px;border:none;border-radius:10px;font-weight:600;transition:.25s;cursor:pointer;font-size:1rem;display:inline-block}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 10px 20px var(--shadow-hover)}
+    .btn-primary{background:linear-gradient(90deg,var(--primary-start),var(--primary-end));color:#fff}
+    .btn-primary:hover{color:#fff}
+    .cta-pulse{animation:pulse 2s infinite}
+
+    /* Section headings */
+    section h2{font-size:1.9rem;margin-bottom:8px;text-align:center}
+    section .sub{color:var(--muted);text-align:center;max-width:760px;margin:0 auto 34px}
+
+    /* Features (unchanged) */
+    .features{padding:60px 0}
+    .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--spacing)}
+    .feature{text-align:center;padding:28px 20px;border-radius:14px;background:var(--card-bg);box-shadow:0 4px 12px var(--shadow);transition:transform .25s}
+    .feature:hover{transform:translateY(-6px)}
+    .feature-icon{font-size:2rem;margin-bottom:1rem;background:linear-gradient(135deg,var(--primary-start),var(--primary-end));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .feature h3{font-size:1.2rem;margin-bottom:.6rem;color:var(--primary-start)}
+    .feature p{color:var(--muted)}
+
+    /* NEW: Solutions (Industry Use Cases) */
+    .solutions{padding:60px 0;background:var(--bg-alt)}
+    .tabs{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:18px}
+    .tab{border:1px solid #e6e7eb;background:#fff;border-radius:999px;padding:10px 14px;font-weight:600;cursor:pointer;transition:.2s}
+    .tab[aria-selected="true"]{background:linear-gradient(90deg,var(--primary-start),var(--primary-end));color:#fff;border-color:transparent}
+    .usecase{display:none}
+    .usecase.active{display:block}
+
+    .usecase-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:stretch}
+    .uc-card{background:#fff;border-radius:16px;box-shadow:0 6px 18px var(--shadow);padding:22px}
+    .uc-card h3{font-size:1.25rem;margin-bottom:8px}
+    .pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:6px 10px;background:#f3f5f7;font-size:.9rem;margin:6px 6px 0 0}
+    .pill .ok{color:var(--ok)}
+    .list{margin-top:12px}
+    .list li{margin:8px 0;display:flex;gap:10px}
+    .list li i{margin-top:4px;color:var(--primary-start)}
+    .flow{margin-top:14px;background:#0f172a;border-radius:14px;color:#e6edf6;padding:16px;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
+    .flow b{color:#fff}
+    .aside{display:grid;gap:14px}
+    .mini-card{background:#fff;border-radius:14px;box-shadow:0 6px 18px var(--shadow);padding:18px}
+    .mini-card h4{margin-bottom:8px}
+    .kv{display:flex;justify-content:space-between;margin:6px 0;font-size:.95rem}
+    .kv .k{color:var(--muted)}
+    .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+
     /* Metrics */
-    .metrics { padding: 60px 0; background: var(--bg-alt); }
-    .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing); }
-    .metric { text-align:center; background: #fff; padding: 30px 20px; border-radius: var(--radius); box-shadow: 0 4px 12px var(--shadow); transition: transform 0.3s; }
-    .metric:hover { transform: translateY(-5px); }
-    .metric .number { font-size: 2.25rem; font-weight:700; background: linear-gradient(90deg, var(--primary-start), var(--primary-end)); -webkit-background-clip: text; color: transparent; margin-bottom:8px; }
-    .metric p { color: var(--muted); font-size: 0.9rem; }
-    
-    /* Pricing */
-    .pricing { padding: 80px 0; background: var(--bg-alt); }
-    .pricing h2 { text-align: center; margin-bottom: 40px; }
-    .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing); }
-    .plan { background: #fff; padding: 40px 30px; border-radius: var(--radius); box-shadow: 0 4px 12px var(--shadow); transition: all 0.3s; cursor: pointer; position: relative; overflow: hidden; }
-    .plan:hover { transform: translateY(-10px); box-shadow: 0 15px 30px var(--shadow-hover); }
-    .plan.selected { border: 2px solid var(--primary-start); }
-    .plan h4 { font-size: 1.5rem; margin-bottom: 10px; color: var(--primary-end); }
-    .plan .price { font-size: 2rem; font-weight: 700; margin-bottom: 20px; }
-    .plan .price span { font-size: 1rem; color: var(--muted); }
-    .plan ul { list-style: none; margin-bottom: 30px; }
-    .plan li { margin-bottom: 10px; position: relative; padding-left: 25px; }
-    .plan li:before { content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; color: var(--primary-start); }
-    
-    /* Testimonials */
-    .testimonials { padding: 80px 0; }
-    .testimonials h2 { text-align: center; margin-bottom: 40px; }
-    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing); }
-    .testimonial-card { background: #fff; padding: 30px; border-radius: var(--radius); box-shadow: 0 4px 12px var(--shadow); }
-    .rating { color: #FFD700; font-size: 1.2rem; margin-bottom: 15px; }
-    .testimonial-card p { font-style: italic; margin-bottom: 20px; }
-    .author { display: flex; align-items: center; }
-    .author img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; margin-right: 15px; }
-    .author h4 { font-size: 1.1rem; margin-bottom: 5px; }
-    .author p { font-size: 0.9rem; color: var(--muted); margin: 0; }
-    
+    .metrics{padding:60px 0}
+    .metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--spacing)}
+    .metric{text-align:center;background:#fff;padding:24px 18px;border-radius:14px;box-shadow:0 4px 12px var(--shadow)}
+    .metric .number{font-size:1.9rem;font-weight:700;background:linear-gradient(90deg,var(--primary-start),var(--primary-end));-webkit-background-clip:text;color:transparent;margin-bottom:6px}
+    .metric p{color:var(--muted);font-size:.9rem}
+
+    /* Pricing (unchanged visually) */
+    .pricing{padding:70px 0;background:var(--bg-alt)}
+    .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--spacing)}
+    .plan{background:#fff;padding:34px 26px;border-radius:14px;box-shadow:0 4px 12px var(--shadow);transition:.25s;cursor:pointer;position:relative;overflow:hidden}
+    .plan:hover{transform:translateY(-6px);box-shadow:0 15px 30px var(--shadow-hover)}
+    .plan.selected{border:2px solid var(--primary-start)}
+    .plan h4{font-size:1.3rem;margin-bottom:8px;color:var(--primary-end)}
+    .plan .price{font-size:1.7rem;font-weight:700;margin-bottom:14px}
+    .plan .price span{font-size:1rem;color:var(--muted)}
+    .plan ul{list-style:none;margin-bottom:20px}
+    .plan li{margin-bottom:10px;position:relative;padding-left:25px}
+    .plan li:before{content:"\f00c";font-family:"Font Awesome 6 Free";font-weight:900;position:absolute;left:0;color:var(--primary-start)}
+
+    /* Testimonials (unchanged) */
+    .testimonials{padding:70px 0}
+    .testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--spacing)}
+    .testimonial-card{background:#fff;padding:28px;border-radius:14px;box-shadow:0 4px 12px var(--shadow)}
+    .rating{color:#FFD700;font-size:1.1rem;margin-bottom:12px}
+
     /* Signup */
-    .signup { padding: 80px 0; background: linear-gradient(135deg, var(--primary-start), var(--primary-end)); color: white; }
-    .signup h2 { text-align: center; margin-bottom: 30px; color: white; }
-    .signup form { display: grid; gap: 15px; max-width: 800px; margin: 0 auto; }
-    .signup input { padding: 16px; border: none; border-radius: var(--radius); font-size: 1rem; }
-    .signup button { width: 100%; padding: 16px; font-size: 1.1rem; }
-    
-    /* Trust Badges */
-    .trust-badges { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin: 40px 0; }
-    .trust-badges img { height: 40px; opacity: 0.8; transition: opacity 0.3s; }
-    .trust-badges img:hover { opacity: 1; }
-    
-    /* FAQ */
-    .faq { padding: 80px 0; }
-    .faq h2 { text-align: center; margin-bottom: 40px; }
-    .faq-item { margin-bottom: 15px; border-radius: var(--radius); overflow: hidden; }
-    .faq-question { background: var(--bg-alt); padding: 20px; font-weight: 600; cursor: pointer; position: relative; }
-    .faq-question:after { content: "\f078"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; right: 20px; transition: transform 0.3s; }
-    .faq-question.active:after { transform: rotate(180deg); }
-    .faq-answer { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.3s, padding 0.3s; background: white; }
-    .faq-answer.show { padding: 20px; max-height: 500px; }
-    
+    .signup{padding:70px 0;background:linear-gradient(135deg,var(--primary-start),var(--primary-end));color:#fff}
+    .signup form{display:grid;gap:12px;max-width:800px;margin:0 auto}
+    .signup input, .signup textarea{padding:14px;border:none;border-radius:10px;font-size:1rem}
+    .signup button{width:100%;padding:14px;font-size:1.05rem}
+
     /* Footer */
-    footer { background: #222; color: white; padding: 60px 0 30px; }
-    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
-    .footer-col h3 { color: white; margin-bottom: 20px; font-size: 1.2rem; }
-    .footer-col ul { list-style: none; }
-    .footer-col li { margin-bottom: 10px; }
-    .footer-col a { color: #aaa; text-decoration: none; transition: color 0.3s; }
-    .footer-col a:hover { color: white; }
-    .social-links { display: flex; gap: 15px; }
-    .social-links a { color: white; font-size: 1.2rem; }
-    .copyright { text-align: center; padding-top: 30px; border-top: 1px solid #444; color: #aaa; font-size: 0.9rem; }
-    
+    footer{background:#0b1220;color:#e5e7eb;padding:52px 0 26px}
+    .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:34px;margin-bottom:30px}
+    .footer-col h3{color:#fff;margin-bottom:14px;font-size:1.1rem}
+    .footer-col a{color:#aeb6c2;text-decoration:none}
+    .footer-col a:hover{color:#fff}
+    .social-links{display:flex;gap:12px}
+    .social-links a{color:#e5e7eb;font-size:1.1rem}
+    .copyright{text-align:center;padding-top:20px;border-top:1px solid #1f2a44;color:#aeb6c2;font-size:.9rem}
+
     /* WhatsApp Button */
-    .wa-button { position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 100; transition: transform 0.3s; }
-    .wa-button:hover { transform: scale(1.1) rotate(10deg); }
-    
+    .wa-button{position:fixed;bottom:28px;right:28px;background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 12px rgba(0,0,0,.15);z-index:100}
+
     /* Offer Banner */
-    .offer-banner { background: #ffd700; color: #333; text-align: center; padding: 10px; font-weight: 600; position: sticky; top: 0; z-index: 999; }
-    
+    .offer-banner{background:#ffd700;color:#333;text-align:center;padding:10px;font-weight:600;position:sticky;top:0;z-index:999}
+
     /* Popup */
-    .popup { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; z-index: 10000; }
-    .popup-content { background: white; padding: 40px; border-radius: var(--radius); max-width: 500px; width: 90%; text-align: center; position: relative; }
-    .popup-close { position: absolute; top: 15px; right: 15px; font-size: 1.5rem; cursor: pointer; }
-    
+    .popup{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:10000}
+    .popup-content{background:#fff;padding:34px;border-radius:14px;max-width:520px;width:92%;text-align:center;position:relative}
+    .popup-close{position:absolute;top:12px;right:12px;font-size:1.5rem;cursor:pointer;border:none;background:transparent}
+
     /* Animations */
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(255,65,108,0.7); }
-      70% { box-shadow: 0 0 0 15px rgba(255,65,108,0); }
-      100% { box-shadow: 0 0 0 0 rgba(255,65,108,0); }
-    }
-    
+    @keyframes gradientBG{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,65,108,.6)}70%{box-shadow:0 0 0 14px rgba(255,65,108,0)}100%{box-shadow:0 0 0 0 rgba(255,65,108,0)}}
+
     /* Responsive */
-    @media (max-width: 768px) {
-      .header-container { flex-direction: column; gap: 15px; }
-      nav ul { gap: 15px; flex-wrap: wrap; justify-content: center; }
-      .hero { padding: 150px 0 80px; }
-      .hero h1 { font-size: 2.2rem; }
-      .hero p { font-size: 1.1rem; }
-      .features-grid, .plans { grid-template-columns: 1fr; }
-      .signup form { grid-template-columns: 1fr; }
+    @media (max-width: 900px){
+      .usecase-grid{grid-template-columns:1fr;gap:16px}
+      .hero{padding:140px 0 70px}
+      .hero h1{font-size:2.2rem}
     }
   </style>
 </head>
 <body>
   <!-- Offer Banner -->
   <div class="offer-banner">
-    <p>🚀 <strong>Limited Time Offer:</strong> Get 2 months free on annual plans! <a href="#pricing" style="color: #d40000; text-decoration: underline;">Claim Now</a></p>
+    <p>🚀 <strong>Limited Time Offer:</strong> Get 2 months free on annual plans! <a href="#pricing" style="color:#b60000;text-decoration:underline">Claim Now</a></p>
   </div>
 
   <!-- Header -->
@@ -182,6 +174,7 @@
       <div class="logo">ConnectCRM</div>
       <nav>
         <ul>
+          <li><a href="#solutions">Solutions</a></li>
           <li><a href="#features">Features</a></li>
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="#testimonials">Testimonials</a></li>
@@ -193,54 +186,227 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section class="hero">
     <div class="container">
       <h1>Transform WhatsApp Chats Into Sales</h1>
-      <p>ConnectCRM automates your WhatsApp conversations, captures every lead, and helps your team close deals faster. Designed for Nigerian businesses.</p>
-      <button class="btn btn-primary cta-pulse" onclick="selectPlan(1)">Start Free Trial <i class="fas fa-arrow-right"></i></button>
-<!--       <div class="trust-badges">
-        <img src="https://via.placeholder.com/150x60?text=Google+Partner" alt="Google Partner">
-        <img src="https://via.placeholder.com/150x60?text=Twilio+Verified" alt="Twilio Verified">
-        <img src="https://via.placeholder.com/150x60?text=GDPR+Compliant" alt="GDPR Compliant">
-      </div> -->
+      <p>ConnectCRM automates your WhatsApp conversations, captures every lead, and helps your team close deals faster. Built for banks, insurers, retailers, and fast-food brands in Nigeria.</p>
+      <button class="btn btn-primary cta-pulse" onclick="selectPlan(1)">Start Free Trial <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+    </div>
+  </section>
+
+  <!-- NEW: Solutions / Industry Use Cases -->
+  <section class="solutions" id="solutions">
+    <div class="container">
+      <h2>Industry Solutions</h2>
+      <p class="sub">Drop-in blueprints you can enable on day one. Each blueprint includes smart intents, data capture, and handoffs.</p>
+
+      <div class="tabs" role="tablist" aria-label="Industry tabs">
+        <button class="tab" role="tab" aria-selected="true" aria-controls="uc-insurance" id="tab-insurance">Insurance</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="uc-banking" id="tab-banking">Banking</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="uc-retail" id="tab-retail">Retail</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="uc-fastfood" id="tab-fastfood">Fast Food</button>
+      </div>
+
+      <!-- Insurance -->
+      <div class="usecase active" id="uc-insurance" role="tabpanel" aria-labelledby="tab-insurance">
+        <div class="usecase-grid">
+          <div class="uc-card">
+            <h3>Insurance: Quote → KYC → Bind</h3>
+            <div>
+              <span class="pill"><i class="fa-solid fa-shield ok"></i> FNOL intake</span>
+              <span class="pill"><i class="fa-solid fa-user-check ok"></i> e-KYC workflow</span>
+              <span class="pill"><i class="fa-solid fa-file-signature ok"></i> Policy docs</span>
+            </div>
+            <ul class="list">
+              <li><i class="fa-solid fa-check"></i><span>Smart quote flow (auto/home/health) with premium range and upsell prompts.</span></li>
+              <li><i class="fa-solid fa-check"></i><span>BVN/ID capture and selfie check via secure link; auto-populate proposal forms.</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Claims FNOL: collect photos, geo, incident notes; route by policy & severity.</span></li>
+            </ul>
+            <div class="flow" aria-label="Sample conversation">
+              <div><b>Customer:</b> “I need car insurance for a 2018 Corolla.”</div>
+              <div><b>Bot:</b> “Third-party from ₦XXk/mo or Comprehensive from ₦XXk/mo. Want full coverage? I’ll collect a few details.”</div>
+              <div><b>Bot:</b> “Tap to verify BVN & upload license. ~2 mins.”</div>
+              <div><b>Bot:</b> “Done! Here’s your policy draft & payment link.”</div>
+            </div>
+            <div class="cta-row">
+              <a class="btn" href="#signup">Enable Insurance Blueprint</a>
+              <a class="btn" href="#faq">See KYC & Data FAQ</a>
+            </div>
+          </div>
+          <div class="aside">
+            <div class="mini-card">
+              <h4>Key Metrics</h4>
+              <div class="kv"><span class="k">Quote→Bind</span><b>+28–45%</b></div>
+              <div class="kv"><span class="k">FNOL time</span><b>-35%</b></div>
+              <div class="kv"><span class="k">Avg. premium</span><b>+12%</b></div>
+            </div>
+            <div class="mini-card">
+              <h4>Integrations</h4>
+              <p>Core policy admin, payment links, document e-sign, ID/BVN verification.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Banking -->
+      <div class="usecase" id="uc-banking" role="tabpanel" aria-labelledby="tab-banking">
+        <div class="usecase-grid">
+          <div class="uc-card">
+            <h3>Banking: Acquisition & Servicing</h3>
+            <div>
+              <span class="pill"><i class="fa-solid fa-id-card-clip ok"></i> Account opening</span>
+              <span class="pill"><i class="fa-solid fa-sack-dollar ok"></i> Loan pre-screen</span>
+              <span class="pill"><i class="fa-solid fa-headset ok"></i> Tiered support</span>
+            </div>
+            <ul class="list">
+              <li><i class="fa-solid fa-check"></i><span>Micro-KYC for entry tiers; auto-escalate to full KYC with secure capture.</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Lead scoring for SMEs & retail; route to RM when intent = “apply”.</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Balance, card dispute, branch hours—handled via verified flows.</span></li>
+            </ul>
+            <div class="flow">
+              <div><b>Prospect:</b> “Open an account.”</div>
+              <div><b>Bot:</b> “Great—2 minute setup. Need selfie + ID. Ready?”</div>
+              <div><b>Bot:</b> “Account created. Here’s your virtual card. Physical card pickup location?”</div>
+            </div>
+            <div class="cta-row">
+              <a class="btn" href="#signup">Enable Banking Blueprint</a>
+              <a class="btn" href="#faq">Security & Data</a>
+            </div>
+          </div>
+          <div class="aside">
+            <div class="mini-card">
+              <h4>Key Metrics</h4>
+              <div class="kv"><span class="k">Acct. open time</span><b>-60%</b></div>
+              <div class="kv"><span class="k">Drop-offs</span><b>-35%</b></div>
+              <div class="kv"><span class="k">RM handoffs</span><b>Instant</b></div>
+            </div>
+            <div class="mini-card">
+              <h4>Compliance Aware</h4>
+              <p>Flows designed to align with NDPR and bank KYC policy. Configurable retention windows.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Retail -->
+      <div class="usecase" id="uc-retail" role="tabpanel" aria-labelledby="tab-retail">
+        <div class="usecase-grid">
+          <div class="uc-card">
+            <h3>Retail: Catalog → Cart → Pay</h3>
+            <div>
+              <span class="pill"><i class="fa-solid fa-bag-shopping ok"></i> Product finder</span>
+              <span class="pill"><i class="fa-solid fa-truck-fast ok"></i> Delivery pickup</span>
+              <span class="pill"><i class="fa-solid fa-rotate ok"></i> Returns</span>
+            </div>
+            <ul class="list">
+              <li><i class="fa-solid fa-check"></i><span>Send PDF/URL catalog; bot extracts sizes, variants, price.</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Cart building in chat; abandoned cart reminders.</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Payments via secure link; order tracking updates.</span></li>
+            </ul>
+            <div class="flow">
+              <div><b>Customer:</b> “Black polo in L?”</div>
+              <div><b>Bot:</b> “In stock. ₦12,500. Add to cart?”</div>
+              <div><b>Bot:</b> “Added. Checkout now or keep shopping?”</div>
+            </div>
+            <div class="cta-row">
+              <a class="btn" href="#signup">Enable Retail Blueprint</a>
+              <a class="btn" href="#pricing">View Plans</a>
+            </div>
+          </div>
+          <div class="aside">
+            <div class="mini-card">
+              <h4>Key Metrics</h4>
+              <div class="kv"><span class="k">AOV</span><b>+8–15%</b></div>
+              <div class="kv"><span class="k">Cart recovery</span><b>+22%</b></div>
+              <div class="kv"><span class="k">Reply time</span><b>&lt;3 min</b></div>
+            </div>
+            <div class="mini-card">
+              <h4>Ops</h4>
+              <p>Warehouse notes, stock alerts, and courier handoff messages baked in.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fast Food -->
+      <div class="usecase" id="uc-fastfood" role="tabpanel" aria-labelledby="tab-fastfood">
+        <div class="usecase-grid">
+          <div class="uc-card">
+            <h3>Fast Food: Menu → Order → Dispatch</h3>
+            <div>
+              <span class="pill"><i class="fa-solid fa-burger ok"></i> Menu parsing (PDF)</span>
+              <span class="pill"><i class="fa-solid fa-location-dot ok"></i> Store finder</span>
+              <span class="pill"><i class="fa-solid fa-stopwatch ok"></i> Prep & ETA</span>
+            </div>
+            <ul class="list">
+              <li><i class="fa-solid fa-check"></i><span>Understands combos, add-ons, and spice levels (e.g., Suya medium/hot).</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Supports pickup or delivery with fee transparency.</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Tracks order status; sends ready-for-pickup ping.</span></li>
+            </ul>
+            <div class="flow">
+              <div><b>Diner:</b> “Order 2 chicken suya, extra pepper.”</div>
+              <div><b>Bot:</b> “Got it. ₦5,800 total. Pickup at Victoria Island in 18–22 mins?”</div>
+              <div><b>Bot:</b> “Pay now or on pickup?”</div>
+            </div>
+            <div class="cta-row">
+              <a class="btn" href="#signup">Enable Fast-Food Blueprint</a>
+              <a class="btn" href="#testimonials">See Results</a>
+            </div>
+          </div>
+          <div class="aside">
+            <div class="mini-card">
+              <h4>Key Metrics</h4>
+              <div class="kv"><span class="k">Order speed</span><b>-40%</b></div>
+              <div class="kv"><span class="k">Repeat orders</span><b>+18%</b></div>
+              <div class="kv"><span class="k">Add-on attach</span><b>+25%</b></div>
+            </div>
+            <div class="mini-card">
+              <h4>Kitchen Mode</h4>
+              <p>Auto-print tickets, prep timers, and throttle when the line is slammed.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
   <!-- Features -->
   <section class="features" id="features">
     <div class="container">
-      <h2 style="text-align: center; margin-bottom: 60px;">Powerful Features Built for Growth</h2>
+      <h2>Powerful Features Built for Growth</h2>
+      <p class="sub">AI that feels human, workflows that scale, and a clean dashboard for your team.</p>
       <div class="features-grid">
         <div class="feature">
           <div class="feature-icon"><i class="fas fa-robot"></i></div>
           <h3>AI Automation</h3>
-          <p>Smart replies and automated follow-ups that feel human</p>
+          <p>Smart replies and automated follow-ups that feel human.</p>
         </div>
         <div class="feature">
           <div class="feature-icon"><i class="fas fa-bolt"></i></div>
           <h3>Instant Lead Capture</h3>
-          <p>Every chat turns into a qualified lead automatically</p>
+          <p>Every chat turns into a qualified lead automatically.</p>
         </div>
         <div class="feature">
           <div class="feature-icon"><i class="fas fa-route"></i></div>
           <h3>Smart Routing</h3>
-          <p>AI directs messages to the right agent based on skills</p>
+          <p>Directs messages to the right agent based on skills and intent.</p>
         </div>
         <div class="feature">
           <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
           <h3>Real-time Insights</h3>
-          <p>Live dashboard with performance metrics and trends</p>
+          <p>Live dashboard with performance metrics and trends.</p>
         </div>
         <div class="feature">
           <div class="feature-icon"><i class="fas fa-tasks"></i></div>
           <h3>Workflow Automation</h3>
-          <p>Automate repetitive tasks and follow-ups</p>
+          <p>Automate repetitive tasks, reminders, and approvals.</p>
         </div>
         <div class="feature">
           <div class="feature-icon"><i class="fas fa-comments"></i></div>
           <h3>Team Collaboration</h3>
-          <p>Internal notes and seamless handoffs between agents</p>
+          <p>Internal notes and seamless handoffs between agents.</p>
         </div>
       </div>
     </div>
@@ -250,38 +416,14 @@
   <section class="metrics">
     <div class="container">
       <div class="metrics-grid">
-        <div class="metric">
-          <div class="number">+30%</div>
-          <p>Conversion uplift</p>
-        </div>
-        <div class="metric">
-          <div class="number">-25%</div>
-          <p>Faster responses</p>
-        </div>
-        <div class="metric">
-          <div class="number">+50%</div>
-          <p>More engagement</p>
-        </div>
-        <div class="metric">
-          <div class="number">99.9%</div>
-          <p>Uptime</p>
-        </div>
-        <div class="metric">
-          <div class="number">+85%</div>
-          <p>Capture rate (leads/chat)</p>
-        </div>
-        <div class="metric">
-          <div class="number">+40%</div>
-          <p>Average deal size increase</p>
-        </div>
-        <div class="metric">
-          <div class="number">&lt;24h</div>
-          <p>Average response time</p>
-        </div>
-        <div class="metric">
-          <div class="number">+70%</div>
-          <p>Customer satisfaction score</p>
-        </div>
+        <div class="metric"><div class="number">+30%</div><p>Conversion uplift</p></div>
+        <div class="metric"><div class="number">-25%</div><p>Faster responses</p></div>
+        <div class="metric"><div class="number">+50%</div><p>More engagement</p></div>
+        <div class="metric"><div class="number">99.9%</div><p>Uptime</p></div>
+        <div class="metric"><div class="number">+85%</div><p>Capture rate (leads/chat)</p></div>
+        <div class="metric"><div class="number">+40%</div><p>Average deal size increase</p></div>
+        <div class="metric"><div class="number">&lt;3m</div><p>Typical reply time</p></div>
+        <div class="metric"><div class="number">+70%</div><p>Customer satisfaction score</p></div>
       </div>
     </div>
   </section>
@@ -290,8 +432,7 @@
   <section class="pricing" id="pricing">
     <div class="container">
       <h2>Simple, Transparent Pricing</h2>
-      <p style="text-align: center; max-width: 700px; margin: 0 auto 40px;">Choose the plan that fits your business needs. No hidden fees, cancel anytime.</p>
-      
+      <p class="sub">Choose the plan that fits your business. No hidden fees, cancel anytime.</p>
       <div class="plans">
         <div class="plan" onclick="selectPlan(0)">
           <h4>Starter</h4>
@@ -305,9 +446,8 @@
           </ul>
           <button class="btn">Select Plan</button>
         </div>
-        
         <div class="plan selected" onclick="selectPlan(1)">
-          <div style="position: absolute; top: 0; right: 0; background: var(--primary-start); color: white; padding: 5px 15px; border-radius: 0 0 0 var(--radius); font-size: 0.8rem; font-weight: 600;">MOST POPULAR</div>
+          <div style="position:absolute;top:0;right:0;background:var(--primary-start);color:#fff;padding:5px 12px;border-radius:0 0 0 12px;font-size:.8rem;font-weight:700">MOST POPULAR</div>
           <h4>Professional</h4>
           <div class="price">₦45,000 <span>/month</span></div>
           <ul>
@@ -320,7 +460,6 @@
           </ul>
           <button class="btn btn-primary">Select Plan</button>
         </div>
-        
         <div class="plan" onclick="selectPlan(2)">
           <h4>Enterprise</h4>
           <div class="price">Custom</div>
@@ -336,8 +475,7 @@
           <button class="btn">Contact Sales</button>
         </div>
       </div>
-      
-      <p style="text-align: center; margin-top: 30px; font-size: 0.9rem; color: var(--muted);">All plans include a 14-day free trial with no credit card required.</p>
+      <p style="text-align:center;margin-top:18px;font-size:.92rem;color:var(--muted)">All plans include a 14-day free trial with no credit card required.</p>
     </div>
   </section>
 
@@ -345,40 +483,22 @@
   <section class="testimonials" id="testimonials">
     <div class="container">
       <h2>Trusted by Nigerian Businesses</h2>
-      <p style="text-align: center; max-width: 700px; margin: 0 auto 40px;">Don't just take our word for it - here's what our customers say</p>
-      
+      <p class="sub">Don't just take our word for it—here's what our customers say.</p>
       <div class="testimonials-grid">
         <div class="testimonial-card">
           <div class="rating">★★★★★</div>
-          <p>"Since implementing ConnectCRM, our sales team has closed 40% more deals in the first month alone. The automated follow-ups are a game-changer!"</p>
-          <div class="author">
-            <div>
-              <h4>Adunni Ojo</h4>
-              <p>CEO, NexaServe</p>
-            </div>
-          </div>
+          <p><em>"Since implementing ConnectCRM, our sales team has closed 40% more deals in the first month alone. The automated follow-ups are a game-changer!"</em></p>
+          <p><strong>Adunni Ojo</strong>, CEO, NexaServe</p>
         </div>
-        
         <div class="testimonial-card">
           <div class="rating">★★★★★</div>
-          <p>"Our customer response time went from hours to minutes. The smart routing ensures queries always reach the right team member instantly."</p>
-          <div class="author">
-            <div>
-              <h4>Chinedu Okafor</h4>
-              <p>Sales Director, NegaTrade</p>
-            </div>
-          </div>
+          <p><em>"Our customer response time went from hours to minutes. The smart routing ensures queries reach the right team instantly."</em></p>
+          <p><strong>Chinedu Okafor</strong>, Sales Director, NegaTrade</p>
         </div>
-        
         <div class="testimonial-card">
           <div class="rating">★★★★★</div>
-          <p>"The analytics dashboard helped us identify bottlenecks in our sales process we didn't even know existed. Highly recommended for any business using WhatsApp!"</p>
-          <div class="author">
-            <div>
-              <h4>Aisha Bello</h4>
-              <p>Operations Manager, AgroLink Africa</p>
-            </div>
-          </div>
+          <p><em>"The analytics dashboard helped us identify bottlenecks we didn't even know existed."</em></p>
+          <p><strong>Aisha Bello</strong>, Operations, AgroLink Africa</p>
         </div>
       </div>
     </div>
@@ -388,16 +508,20 @@
   <section class="signup" id="signup">
     <div class="container">
       <h2>Start Your 14-Day Free Trial</h2>
-      <p style="text-align: center; margin-bottom: 30px; color: rgba(255,255,255,0.9);">No credit card required. Get started in minutes.</p>
-      
+      <p class="sub" style="color:rgba(255,255,255,.92)">No credit card required. Get started in minutes.</p>
+
       <form action="https://formspree.io/f/mzzvdlra" method="POST" onsubmit="return submitForm();">
         <input type="hidden" id="planField" name="plan" value="Professional">
-        <input type="text" name="name" placeholder="First & Last Name" required>
-        <input type="text" name="company" placeholder="Company Name" required>
-        <input type="email" name="email" placeholder="Email Address" required>
-        <input type="tel" name="phone" placeholder="Phone Number" required>
-        <textarea name="business_info" placeholder="Tell us about your business" rows="4" style="width: 100%;"></textarea>
-
+        <label class="visually-hidden" for="name">Name</label>
+        <input id="name" type="text" name="name" placeholder="First & Last Name" required>
+        <label class="visually-hidden" for="company">Company</label>
+        <input id="company" type="text" name="company" placeholder="Company Name" required>
+        <label class="visually-hidden" for="email">Email</label>
+        <input id="email" type="email" name="email" placeholder="Email Address" required>
+        <label class="visually-hidden" for="phone">Phone</label>
+        <input id="phone" type="tel" name="phone" placeholder="Phone Number" required>
+        <label class="visually-hidden" for="biz">Business info</label>
+        <textarea id="biz" name="business_info" placeholder="Tell us about your business" rows="4" style="width:100%"></textarea>
         <button class="btn btn-primary" type="submit">Start Professional Trial</button>
       </form>
     </div>
@@ -407,40 +531,30 @@
   <section class="faq" id="faq">
     <div class="container">
       <h2>Frequently Asked Questions</h2>
-      
+
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFAQ(this)">How does ConnectCRM integrate with WhatsApp?</div>
-        <div class="faq-answer">
-          <p>ConnectCRM uses WhatsApp's official Business API to provide seamless integration. We handle all the technical setup - you just need to connect your business number and you're ready to go. No coding required.</p>
-        </div>
+        <div class="faq-answer"><p>ConnectCRM uses WhatsApp's official Business API to provide seamless integration. We handle all the technical setup—connect your business number and you're good to go.</p></div>
       </div>
-      
+
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFAQ(this)">Is there a long-term contract?</div>
-        <div class="faq-answer">
-          <p>No. ConnectCRM is month-to-month with no long-term contracts. You can cancel anytime with no penalties.</p>
-        </div>
+        <div class="faq-answer"><p>No. ConnectCRM is month-to-month with no long-term contracts. Cancel anytime.</p></div>
       </div>
-      
+
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFAQ(this)">What happens if I exceed my chat limit?</div>
-        <div class="faq-answer">
-          <p>We'll notify you when you're approaching your limit. You can either upgrade your plan or purchase additional chat packs. We never cut off service unexpectedly.</p>
-        </div>
+        <div class="faq-answer"><p>We’ll notify you as you approach your limit. Upgrade your plan or purchase chat packs—service won’t be cut off unexpectedly.</p></div>
       </div>
-      
+
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFAQ(this)">How secure is my data?</div>
-        <div class="faq-answer">
-          <p>Security is our top priority. All data is encrypted in transit and at rest. We're fully compliant with Nigerian data protection regulations and GDPR for international clients.</p>
-        </div>
+        <div class="faq-answer"><p>All data is encrypted in transit and at rest. We align with NDPR and GDPR best practices, and offer configurable data retention.</p></div>
       </div>
-      
+
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFAQ(this)">Can I use my existing WhatsApp number?</div>
-        <div class="faq-answer">
-          <p>Yes! You can migrate your existing WhatsApp Business number to ConnectCRM without losing any chat history or contacts.</p>
-        </div>
+        <div class="faq-answer"><p>Yes—migrate your WhatsApp Business number to ConnectCRM without losing chat history or contacts.</p></div>
       </div>
     </div>
   </section>
@@ -453,21 +567,20 @@
           <h3>ConnectCRM</h3>
           <p>Transforming WhatsApp conversations into business growth for Nigerian companies.</p>
           <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i><span class="visually-hidden">Facebook</span></a>
+            <a href="#"><i class="fab fa-twitter" aria-hidden="true"></i><span class="visually-hidden">Twitter</span></a>
+            <a href="#"><i class="fab fa-linkedin-in" aria-hidden="true"></i><span class="visually-hidden">LinkedIn</span></a>
+            <a href="#"><i class="fab fa-instagram" aria-hidden="true"></i><span class="visually-hidden">Instagram</span></a>
           </div>
         </div>
-        
         <div class="footer-col">
           <h3>Product</h3>
           <ul>
+            <li><a href="#solutions">Solutions</a></li>
             <li><a href="#features">Features</a></li>
             <li><a href="#pricing">Pricing</a></li>
           </ul>
         </div>
-        
         <div class="footer-col">
           <h3>Resources</h3>
           <ul>
@@ -476,7 +589,6 @@
             <li><a href="#">API Documentation</a></li>
           </ul>
         </div>
-        
         <div class="footer-col">
           <h3>Company</h3>
           <ul>
@@ -486,15 +598,13 @@
             <li><a href="#">Terms of Service</a></li>
           </ul>
         </div>
-        
         <div class="footer-col">
           <h3>Contact</h3>
-          <p><i class="fas fa-map-marker-alt"></i> 17 Keffi St, Lagos Island, Lagos</p>
-          <p><i class="fas fa-phone"></i> +234 706 041 9725</p>
-          <p><i class="fas fa-envelope"></i> info@234.ventures</p>
+          <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> 17 Keffi St, Lagos Island, Lagos</p>
+          <p><i class="fas fa-phone" aria-hidden="true"></i> +234 706 041 9725</p>
+          <p><i class="fas fa-envelope" aria-hidden="true"></i> info@234.ventures</p>
         </div>
       </div>
-      
       <div class="copyright">
         <p>&copy; 2025 Oricell Internet Services Ltd. All rights reserved.</p>
       </div>
@@ -503,155 +613,114 @@
 
   <!-- WhatsApp Button -->
   <a href="https://wa.me/2347060419725" class="wa-button" aria-label="Chat on WhatsApp">
-    <i class="fab fa-whatsapp"></i>
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
   </a>
 
-<div
-  id="exitPopup"
-  class="popup"
-  role="dialog"
-  aria-modal="true"
-  aria-labelledby="exitPopupTitle"
-  aria-hidden="true"
->
-  <div class="popup-content" role="document">
-    <button
-      class="popup-close"
-      onclick="closePopup()"
-      aria-label="Close discount offer"
-    >&times;</button>
-    <h3 id="exitPopupTitle">Hold On—Enjoy 10% Off!</h3>
-    <p>Subscribe now to claim your exclusive discount code for the first three months.</p>
+  <!-- Exit Intent Popup -->
+  <div id="exitPopup" class="popup" role="dialog" aria-modal="true" aria-labelledby="exitPopupTitle" aria-hidden="true">
+    <div class="popup-content" role="document">
+      <button class="popup-close" onclick="closePopup()" aria-label="Close discount offer">&times;</button>
+      <h3 id="exitPopupTitle">Hold On—Enjoy 10% Off!</h3>
+      <p>Subscribe now to claim your exclusive discount code for the first three months.</p>
 
-    <form id="exitPopupForm">
-      <label for="popupEmail" class="visually-hidden">Email Address</label>
-      <input
-        type="email"
-        id="popupEmail"
-        name="email"
-        placeholder="you@example.com"
-        required
-        aria-required="true"
-      >
-      <button type="submit" class="btn btn-primary">Send My Discount</button>
-      <p id="popupStatus" role="status" aria-live="polite"></p>
-    </form>
+      <form id="exitPopupForm">
+        <label for="popupEmail" class="visually-hidden">Email Address</label>
+        <input type="email" id="popupEmail" name="email" placeholder="you@example.com" required aria-required="true">
+        <button type="submit" class="btn btn-primary">Send My Discount</button>
+        <p id="popupStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
   </div>
-</div>
-
 
   <script>
-
-      document.getElementById('exitPopupForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const email = document.getElementById('popupEmail').value;
-    const statusEl = document.getElementById('popupStatus');
-    statusEl.textContent = 'Sending…';
-
-    try {
-      const res = await fetch('https://formspree.io/f/mzzvdlra', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email })
+    // Solutions tabs
+    const tabs = document.querySelectorAll('.tab');
+    const panels = document.querySelectorAll('.usecase');
+    tabs.forEach(tab=>{
+      tab.addEventListener('click',()=>{
+        tabs.forEach(t=>t.setAttribute('aria-selected','false'));
+        panels.forEach(p=>p.classList.remove('active'));
+        tab.setAttribute('aria-selected','true');
+        const target = document.getElementById(tab.getAttribute('aria-controls'));
+        target.classList.add('active');
+        target.scrollIntoView({behavior:'smooth', block:'nearest'});
       });
-      if (!res.ok) throw new Error(res.statusText);
-      statusEl.textContent = 'Success! Check your inbox for the code.';
-    } catch (err) {
-      statusEl.textContent = 'Oops, something went wrong. Please try again.';
-      console.error(err);
-    }
-  });
+    });
+
+    // Exit popup form submit
+    document.getElementById('exitPopupForm').addEventListener('submit', async function(e){
+      e.preventDefault();
+      const email = document.getElementById('popupEmail').value;
+      const statusEl = document.getElementById('popupStatus');
+      statusEl.textContent = 'Sending…';
+      try{
+        const res = await fetch('https://formspree.io/f/mzzvdlra',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})});
+        if(!res.ok) throw new Error(res.statusText);
+        statusEl.textContent = 'Success! Check your inbox for the code.';
+      }catch(err){
+        statusEl.textContent = 'Oops, something went wrong. Please try again.';
+        console.error(err);
+      }
+    });
+
     // Plan selection
-    function selectPlan(index) {
-      document.querySelectorAll('.plan').forEach((p,i) => {
-        p.classList.toggle('selected', i === index);
-      });
-      
+    function selectPlan(index){
+      document.querySelectorAll('.plan').forEach((p,i)=>p.classList.toggle('selected',i===index));
       const plan = ['Starter','Professional','Enterprise'][index];
       document.getElementById('planField').value = plan;
-      document.querySelector('form button').textContent = `Start ${plan} Trial`;
-      
-      // Scroll to signup form
-      document.getElementById('signup').scrollIntoView({ behavior: 'smooth' });
+      document.querySelector('#signup form button').textContent = `Start ${plan} Trial`;
+      document.getElementById('signup').scrollIntoView({behavior:'smooth'});
     }
-    
-    // Form submission
-    function submitForm() {
+
+    // Form submission tracking
+    function submitForm(){
       const plan = document.getElementById('planField').value;
-      if(!plan) {
-        alert('Please select a plan first');
-        return false;
-      }
-      
-      // Track conversion
-      if(typeof gtag !== 'undefined') {
-        gtag('event', 'conversion', {'send_to': 'AW-123456789/AbC-D_efG-h12'});
-      }
-      
+      if(!plan){ alert('Please select a plan first'); return false; }
+      if(typeof gtag!=='undefined'){ gtag('event','conversion',{'send_to':'AW-123456789/AbC-D_efG-h12'}); }
       return true;
     }
-    
+
     // FAQ toggle
-    function toggleFAQ(element) {
+    function toggleFAQ(element){
       element.classList.toggle('active');
       const answer = element.nextElementSibling;
       answer.classList.toggle('show');
     }
-    
-    // Exit intent popup
-    document.addEventListener('mouseout', (e) => {
-      if(!e.toElement && !e.relatedTarget && !localStorage.getItem('popupShown')) {
-        document.getElementById('exit-popup').style.display = 'flex';
-        localStorage.setItem('popupShown', 'true');
+
+    // Exit intent popup (fixed ID usage)
+    document.addEventListener('mouseout',(e)=>{
+      if(!e.toElement && !e.relatedTarget && !localStorage.getItem('popupShown')){
+        document.getElementById('exitPopup').style.display='flex';
+        localStorage.setItem('popupShown','true');
       }
     });
-    
-    function closePopup() {
-      document.getElementById('exit-popup').style.display = 'none';
-    }
-    
-    // Scroll animations
-    document.addEventListener('DOMContentLoaded', function() {
-      const animateOnScroll = () => {
-        const elements = document.querySelectorAll('.feature, .metric, .plan');
-        elements.forEach(el => {
-          const position = el.getBoundingClientRect().top;
-          const screenPosition = window.innerHeight / 1.3;
-          
-          if(position < screenPosition) {
-            el.classList.add('animated');
-          }
+    function closePopup(){ document.getElementById('exitPopup').style.display='none'; }
+
+    // Simple scroll reveal
+    document.addEventListener('DOMContentLoaded',function(){
+      const els = document.querySelectorAll('.feature,.metric,.plan,.uc-card,.mini-card');
+      const onScroll=()=>{
+        els.forEach(el=>{
+          const top = el.getBoundingClientRect().top;
+          if(top < window.innerHeight*0.85){ el.style.transition='transform .5s, opacity .5s'; el.style.transform='translateY(0)'; el.style.opacity='1'; }
+          else{ el.style.transform='translateY(12px)'; el.style.opacity='.0'; }
         });
       };
-      
-      window.addEventListener('scroll', animateOnScroll);
-      animateOnScroll(); // Run once on load
+      onScroll();
+      window.addEventListener('scroll',onScroll,{passive:true});
     });
   </script>
 
   <!-- Structured Data -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "ConnectCRM",
-    "description": "WhatsApp CRM automation platform for Nigerian businesses",
-    "brand": {
-      "@type": "Brand",
-      "name": "Oricell"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "87"
-    },
-    "offers": {
-      "@type": "AggregateOffer",
-      "offerCount": "3",
-      "lowPrice": "15000",
-      "highPrice": "45000",
-      "priceCurrency": "NGN"
-    }
+    "@context":"https://schema.org",
+    "@type":"Product",
+    "name":"ConnectCRM",
+    "description":"WhatsApp CRM automation platform for Nigerian businesses",
+    "brand":{"@type":"Brand","name":"Oricell"},
+    "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"87"},
+    "offers":{"@type":"AggregateOffer","offerCount":"3","lowPrice":"15000","highPrice":"45000","priceCurrency":"NGN"}
   }
   </script>
 </body>
