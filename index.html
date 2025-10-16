@@ -131,7 +131,7 @@
     }
   </style>
 </head>
-<body>
+<body data-theme="light">
   <header>
     <div class="container nav">
       <div class="logo"><div class="logo-mark"></div> ConnectCRM</div>
@@ -255,7 +255,7 @@
       <div class="tiers" style="margin-top:16px">
         <div class="price-card">
           <div class="muted">Starter</div>
-          <div class="price">₦25,000<span style="opacity:.6;font-weight:600;font-size:14px">/mo</span></div>
+          <div class="price">₦15,000<span style="opacity:.6;font-weight:600;font-size:14px">/mo</span></div>
           <ul>
             <li>500 chats</li>
             <li>Workflow builder + templates</li>
@@ -335,8 +335,8 @@
   <script>
     // Theme toggle (remembers choice)
     const btn = document.getElementById('themeBtn');
-    const pref = localStorage.getItem('theme') || 'dark';
-    if(pref==='light') document.body.setAttribute('data-theme','light');
+    const pref = localStorage.getItem('theme') || 'light';
+    if(pref==='light') document.body.setAttribute('data-theme','light'); else document.body.removeAttribute('data-theme');
     btn.addEventListener('click',()=>{
       const isLight = document.body.getAttribute('data-theme')==='light';
       document.body.setAttribute('data-theme', isLight? '' : 'light');
