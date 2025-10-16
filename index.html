@@ -1,865 +1,385 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6EQ7KEZF8"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-P6EQ7KEZF8');
-  </script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ConnectCRM - WhatsApp CRM Automation for Nigerian Businesses</title>
-  <meta name="description" content="Automate WhatsApp conversations, capture leads, and boost sales. ConnectCRM helps Nigerian businesses never miss another chat opportunity.">
-  <link rel="canonical" href="https://connectcrm.ng" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ConnectCRM — Turn WhatsApp chats into revenue</title>
+  <meta name="description" content="ConnectCRM helps African SMEs turn WhatsApp conversations into automated sales, support, and payments — no code, live in minutes."/>
   <style>
+    /* ===== Design Tokens ===== */
     :root{
-      /* TEAL/INDIGO palette */
-      --primary-start:#0ea5e9;
-      --primary-end:#10b981;
-      --text:#1f2937;
-      --muted:#6b7280;
-      --bg:#ffffff;
-      --bg-alt:#f2f6f8;
-      --radius:12px;
-      --spacing:20px;
-      --shadow:rgba(0,0,0,.08);
-      --shadow-hover:rgba(0,0,0,.18);
-      --card-bg:#fff;
-      --ok:#0dbd7d;
-      --warn:#ffb020;
+      --bg:#0b0e13;           /* dark base */
+      --panel:#0f131a;
+      --card:#121826;
+      --ink:#eaf1ff;
+      --muted:#97a3b6;
+      --brand:#6ee7ff;        /* cyan */
+      --brand-2:#7c7eff;      /* indigo */
+      --accent:#22c55e;       /* green */
+      --ring:rgba(124,126,255,.45);
+      --shadow:0 24px 70px rgba(2,8,23,.45);
+      --border:rgba(148,163,184,.15);
+      --header-bg:linear-gradient(180deg, rgba(11,14,19,.75), rgba(11,14,19,.35) 60%, transparent);
+      /* component roles */
+      --node-bg:rgba(255,255,255,.04);
+      --pill-bg:rgba(110,231,255,.12);
+      --pill-border:rgba(110,231,255,.35);
+      --pill-fg:#c7f9ff;
+      --ok-bg:rgba(34,197,94,.10);
+      --ok-border:rgba(34,197,94,.35);
+      --ok-fg:#d1fae5;
+      --chip-bg:rgba(124,126,255,.14);
+      --chip-border:rgba(124,126,255,.35);
+      --chip-fg:#dbeafe;
     }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Poppins',sans-serif;color:var(--text);background:var(--bg);line-height:1.6;scroll-behavior:smooth}
-    .container{width:92%;max-width:1200px;margin:0 auto;padding:var(--spacing) 0}
-    .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
-
-    /* Header */
-    header{padding:16px 0;position:fixed;width:100%;background:#fff;box-shadow:0 2px 10px var(--shadow);z-index:1000}
-    .header-container{display:flex;justify-content:space-between;align-items:center}
-    .logo{font-size:1.6rem;font-weight:700;background:linear-gradient(90deg,var(--primary-start),var(--primary-end));-webkit-background-clip:text;color:transparent}
-    nav ul{display:flex;list-style:none;gap:26px}
-    nav a{text-decoration:none;color:var(--text);font-weight:500}
-    nav a:hover{color:var(--primary-start)}
-    .nav-btn{background:linear-gradient(90deg,var(--primary-start),var(--primary-end));color:#fff;padding:10px 16px;border-radius:10px}
-
-    /* Hero */
-    .hero{
-      text-align:center;padding:160px 0 84px;
-      background:linear-gradient(-45deg,#0ea5e9,#10b981,#2563eb,#14b8a6);
-      background-size:400% 400%;animation:gradientBG 15s ease infinite;
-      border-radius:0 0 var(--radius) var(--radius);color:#fff;margin-bottom:56px
+    [data-theme="light"]{
+      --bg:#f7f9fc; --panel:#ffffff; --card:#ffffff; --ink:#0b0e13; --muted:#4b5565; --shadow:0 24px 70px rgba(2,8,23,.08); --border:rgba(2,8,23,.08);
+      --header-bg:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.7) 60%, transparent);
+      --node-bg:rgba(2,8,23,.02);
+      --pill-bg:rgba(124,126,255,.18);
+      --pill-border:rgba(124,126,255,.35);
+      --pill-fg:#0b0e13;
+      --ok-bg:rgba(34,197,94,.12);
+      --ok-border:rgba(34,197,94,.35);
+      --ok-fg:#065f46;
+      --chip-bg:rgba(124,126,255,.16);
+      --chip-border:rgba(124,126,255,.35);
+      --chip-fg:#1f2a44;
     }
-    .hero h1{font-size:2.7rem;margin-bottom:14px;line-height:1.2}
-    .hero p{font-size:1.1rem;color:rgba(255,255,255,.92);max-width:780px;margin:10px auto 24px}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font:16px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; background:radial-gradient(1200px 800px at 80% -10%, rgba(124,126,255,.12), transparent 55%),
+      radial-gradient(1000px 700px at 10% 10%, rgba(110,231,255,.12), transparent 55%), var(--bg); color:var(--ink);}    
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1180px;margin:0 auto;padding:0 24px}
 
-    /* Buttons */
-    .btn{background:#fff;color:var(--primary-start);padding:14px 24px;border:none;border-radius:10px;font-weight:600;transition:.25s;cursor:pointer;font-size:1rem;display:inline-block}
-    .btn:hover{transform:translateY(-2px);box-shadow:0 10px 20px var(--shadow-hover)}
-    .btn-primary{background:linear-gradient(90deg,var(--primary-start),var(--primary-end));color:#fff}
-    .btn-primary:hover{color:#fff}
-    .cta-pulse{animation:pulse 2s infinite}
+    /* ===== Header ===== */
+    header{position:sticky;top:0;z-index:50;background:var(--header-bg);backdrop-filter:saturate(140%) blur(8px)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px;font-size:clamp(16px,1.2vw,20px)}
+    .logo-mark{width:26px;height:26px;border-radius:8px;background:conic-gradient(from 180deg, var(--brand), var(--brand-2));box-shadow:0 10px 25px rgba(124,126,255,.35)}
+    .links a{opacity:.95;margin:0 14px;font-weight:700;font-size:clamp(15px,1.05vw,18px);letter-spacing:.15px}
+    .cta{padding:10px 14px;border-radius:12px;background:linear-gradient(90deg,var(--brand),var(--brand-2));color:#061018;font-weight:800;box-shadow:0 8px 24px rgba(124,126,255,.25)}
+    .theme{margin-left:10px;border:1px solid var(--border);border-radius:12px;padding:8px 10px;background:var(--panel);cursor:pointer}
 
-    /* Section headings */
-    section h2{font-size:1.9rem;margin-bottom:8px;text-align:center}
-    section .sub{color:var(--muted);text-align:center;max-width:760px;margin:0 auto 34px}
+    /* ===== Hero ===== */
+    .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center;padding:52px 0 20px}
+    .eyebrow{display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border-radius:999px;background:var(--chip-bg);border:1px solid var(--chip-border);color:var(--chip-fg)}
+    h1.title{font-size:clamp(36px,4vw,56px);line-height:1.06;margin:14px 0 10px}
+    .title .grad{background:linear-gradient(90deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .sub{color:var(--muted);max-width:60ch}
+    .hero-ctas{display:flex;gap:12px;margin-top:16px}
+    .btn{padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:var(--panel)}
+    .btn.primary{border:none;background:linear-gradient(90deg,var(--brand),var(--brand-2));color:#061018;font-weight:900}
 
-    /* Features */
-    .features{padding:60px 0}
-    .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--spacing)}
-    .feature{text-align:center;padding:28px 20px;border-radius:14px;background:var(--card-bg);box-shadow:0 4px 12px var(--shadow);transition:transform .25s}
-    .feature:hover{transform:translateY(-6px)}
-    .feature-icon{font-size:2rem;margin-bottom:1rem;background:linear-gradient(135deg,var(--primary-start),var(--primary-end));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .feature h3{font-size:1.2rem;margin-bottom:.6rem;color:var(--primary-start)}
-    .feature p{color:var(--muted)}
+    /* ===== Product Card / Blueprint ===== */
+    .screen{position:relative;border-radius:18px;background:var(--card);box-shadow:var(--shadow);border:1px solid var(--border);overflow:hidden}
+    .screen-head{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--border);background:linear-gradient(180deg,rgba(255,255,255,.04),transparent)}
+    .dot{width:10px;height:10px;border-radius:999px;background:rgba(148,163,184,.35)}
+    .tabs{display:flex;gap:8px;margin-left:6px;flex-wrap:wrap}
+    .tab{padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:transparent;font-size:14px;font-weight:600;cursor:pointer}
+    .tab.active{background:linear-gradient(90deg, rgba(110,231,255,.14), rgba(124,126,255,.14));border-color:var(--ring)}
+    .canvas{position:relative;min-height:420px;background:linear-gradient(180deg, rgba(255,255,255,.02), transparent)}
+    .node{position:absolute;min-width:210px;max-width:280px;background:var(--node-bg);border:1px solid var(--border);border-radius:14px;padding:14px;box-shadow:0 10px 20px rgba(0,0,0,.25)}
+    .node h4{margin:0 0 6px;font-size:14px}
+    .node .pill{display:inline-flex;gap:8px;align-items:center;background:var(--pill-bg);border:1px solid var(--pill-border);color:var(--pill-fg);padding:6px 10px;border-radius:999px;font-size:12px}
+    .node .row{display:flex;gap:8px;margin-top:8px;color:var(--muted);font-size:13px}
+    svg.wires{position:absolute;inset:0}
 
-    /* Solutions (Industry Use Cases) */
-    .solutions{padding:60px 0;background:var(--bg-alt)}
-    .tabs{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:18px}
-    .tab{border:1px solid #dde3e9;background:#fff;border-radius:999px;padding:10px 14px;font-weight:600;cursor:pointer;transition:.2s}
-    .tab[aria-selected="true"]{background:linear-gradient(90deg,var(--primary-start),var(--primary-end));color:#fff;border-color:transparent}
-    .usecase{display:none}
-    .usecase.active{display:block}
+    /* ===== Outcomes ===== */
+    .outcomes{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+    .ok{background:var(--ok-bg);border:1px solid var(--ok-border);color:var(--ok-fg);padding:10px 12px;border-radius:12px;text-align:center}
 
-    .usecase-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:stretch}
-    .uc-card{background:#fff;border-radius:16px;box-shadow:0 6px 18px var(--shadow);padding:22px}
-    .uc-card h3{font-size:1.25rem;margin-bottom:8px}
-    .pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:6px 10px;background:#eef4f7;font-size:.9rem;margin:6px 6px 0 0}
-    .pill .ok{color:var(--ok)}
-    .list{margin-top:12px}
-    .list li{margin:8px 0;display:flex;gap:10px}
-    .list li i{margin-top:4px;color:var(--primary-start)}
-    .flow{margin-top:14px;background:#0f172a;border-radius:14px;color:#e6edf6;padding:16px;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
-    .flow b{color:#fff}
-    .aside{display:grid;gap:14px}
-    .mini-card{background:#fff;border-radius:14px;box-shadow:0 6px 18px var(--shadow);padding:18px}
-    .mini-card h4{margin-bottom:8px}
-    .kv{display:flex;justify-content:space-between;margin:6px 0;font-size:.95rem}
-    .kv .k{color:var(--muted)}
-    .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    /* ===== Value / Africa-first ===== */
+    .value{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:0 8px 20px rgba(0,0,0,.25)}
+    .card h3{margin:6px 0 8px}
+    .tag{display:inline-block;margin-top:8px;font-size:12px;opacity:.8;border:1px solid var(--border);padding:6px 8px;border-radius:999px}
 
-    /* Metrics */
-    .metrics{padding:60px 0}
-    .metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--spacing)}
-    .metric{text-align:center;background:#fff;padding:24px 18px;border-radius:14px;box-shadow:0 4px 12px var(--shadow)}
-    .metric .number{font-size:1.9rem;font-weight:700;background:linear-gradient(90deg,var(--primary-start),var(--primary-end));-webkit-background-clip:text;color:transparent;margin-bottom:6px}
-    .metric p{color:var(--muted);font-size:.9rem}
+    /* ===== Use cases grid ===== */
+    .usecases{margin-top:20px}
+    .uc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .ucard{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;cursor:pointer;transition:transform .12s ease, box-shadow .2s ease}
+    .ucard:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.25)}
+    .ucard h4{margin:0 0 6px}
+    .ucard p{margin:0;color:var(--muted);font-size:13px}
 
-    /* Pricing */
-    .pricing{padding:70px 0;background:var(--bg-alt)}
-    .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--spacing)}
-    .plan{background:#fff;padding:34px 26px;border-radius:14px;box-shadow:0 4px 12px var(--shadow);transition:.25s;cursor:pointer;position:relative;overflow:hidden}
-    .plan:hover{transform:translateY(-6px);box-shadow:0 15px 30px var(--shadow-hover)}
-    .plan.selected{border:2px solid var(--primary-start)}
-    .plan h4{font-size:1.3rem;margin-bottom:8px;color:var(--primary-end)}
-    .plan .price{font-size:1.7rem;font-weight:700;margin-bottom:14px}
-    .plan .price span{font-size:1rem;color:var(--muted)}
-    .plan ul{list-style:none;margin-bottom:20px}
-    .plan li{margin-bottom:10px;position:relative;padding-left:25px}
-    .plan li:before{content:"\f00c";font-family:"Font Awesome 6 Free";font-weight:900;position:absolute;left:0;color:var(--primary-start)}
+    /* ===== Pricing ===== */
+    .pricing{margin-top:34px}
+    .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .price-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:0 8px 20px rgba(0,0,0,.25)}
+    .price{font-weight:900;font-size:28px}
 
-    /* Testimonials */
-    .testimonials{padding:70px 0}
-    .testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--spacing)}
-    .testimonial-card{background:#fff;padding:28px;border-radius:14px;box-shadow:0 4px 12px var(--shadow)}
-    .rating{color:#FFD700;font-size:1.1rem;margin-bottom:12px}
+    /* ===== Contact ===== */
+    .contact{margin-top:26px}
+    .cform{display:grid;grid-template-columns:1fr;gap:12px;padding:16px}
+    .cform label{display:block;font-weight:700;color:var(--ink)}
+    .cform label span{display:block;margin-bottom:6px;color:var(--muted);font-weight:600}
+    .cform input[type="email"], .cform textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:transparent;color:var(--ink);outline:none}
+    .cform input[type="email"]:focus, .cform textarea:focus{border-color:var(--ring);box-shadow:0 0 0 3px rgba(124,126,255,.25)}
+    .cform textarea{min-height:140px;resize:vertical}
 
-    /* Signup */
-    .signup{padding:70px 0;background:linear-gradient(135deg,var(--primary-start),var(--primary-end));color:#fff}
-    .signup form{display:grid;gap:12px;max-width:800px;margin:0 auto}
-    .signup input, .signup textarea{padding:14px;border:none;border-radius:10px;font-size:1rem}
-    .signup button{width:100%;padding:14px;font-size:1.05rem}
+    /* ===== Footer ===== */
+    footer{border-top:1px solid var(--border);margin-top:40px}
+    .foot{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;padding:18px 0;color:var(--muted)}
 
-    /* Footer */
-    footer{background:#0b1220;color:#e5e7eb;padding:52px 0 26px}
-    .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:34px;margin-bottom:30px}
-    .footer-col h3{color:#fff;margin-bottom:14px;font-size:1.1rem}
-    .footer-col a{color:#aeb6c2;text-decoration:none}
-    .footer-col a:hover{color:#fff}
-    .social-links{display:flex;gap:12px}
-    .social-links a{color:#e5e7eb;font-size:1.1rem}
-    .copyright{text-align:center;padding-top:20px;border-top:1px solid #1f2a44;color:#aeb6c2;font-size:.9rem}
-
-    /* WhatsApp Button */
-    .wa-button{position:fixed;bottom:28px;right:28px;background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 12px rgba(0,0,0,.15);z-index:100}
-
-    /* Offer Banner */
-    .offer-banner{background:#ffd700;color:#333;text-align:center;padding:10px;font-weight:600;position:sticky;top:0;z-index:999}
-
-    /* Popup */
-    .popup{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:10000}
-    .popup-content{background:#fff;padding:34px;border-radius:14px;max-width:520px;width:92%;text-align:center;position:relative}
-    .popup-close{position:absolute;top:12px;right:12px;font-size:1.5rem;cursor:pointer;border:none;background:transparent}
-
-    /* Animations */
-    @keyframes gradientBG{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(14,165,233,.55)}70%{box-shadow:0 0 0 14px rgba(14,165,233,0)}100%{box-shadow:0 0 0 0 rgba(14,165,233,0)}}
-
-    /* Responsive */
-    @media (max-width: 900px){
-      .usecase-grid{grid-template-columns:1fr;gap:16px}
-      .hero{padding:140px 0 70px}
-      .hero h1{font-size:2.2rem}
+    @media (max-width:1080px){.uc-grid{grid-template-columns:repeat(3,1fr)}}
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .outcomes, .value, .tiers{grid-template-columns:1fr}
+      .uc-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
-  <!-- Offer Banner -->
-  <div class="offer-banner">
-    <p>🚀 <strong>Limited Time Offer:</strong> Get 2 months free on annual plans! <a href="#pricing" style="color:#0b3d3b;text-decoration:underline">Claim Now</a></p>
-  </div>
-
-  <!-- Header -->
   <header>
-    <div class="container header-container">
-      <div class="logo">ConnectCRM</div>
-      <nav>
-        <ul>
-          <li><a href="#solutions">Solutions</a></li>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#signup" class="nav-btn">Get Started</a></li>
-        </ul>
-      </nav>
+    <div class="container nav">
+      <div class="logo"><div class="logo-mark"></div> ConnectCRM</div>
+      <div class="links">
+        <a href="#builder">Builder</a>
+        <a href="#value">Why ConnectCRM</a>
+        <a href="#usecases">Use cases</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <a class="cta" href="https://wa.me/2347060419725?text=I%20would%20like%20to%20learn%20more%20about%20ConnectCRM">Chat on WhatsApp</a>
+        <button class="theme" id="themeBtn" aria-label="Toggle theme">☀️/🌙</button>
+      </div>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container">
-      <h1>Transform WhatsApp Chats Into Sales</h1>
-      <p>ConnectCRM automates your WhatsApp conversations, captures every lead, and helps your team close deals faster. Built for banks, insurers, retailers, fast-food, customer service teams, oil &amp; gas, healthcare, and real estate in Nigeria.</p>
-      <button class="btn btn-primary cta-pulse" onclick="selectPlan(1)">Start Free Trial <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
-    </div>
-  </section>
-
-  <!-- Solutions / Industry Use Cases -->
-  <section class="solutions" id="solutions">
-    <div class="container">
-      <h2>Industry Solutions</h2>
-      <p class="sub">Drop-in blueprints you can enable on day one. Each blueprint includes smart intents, data capture, and handoffs.</p>
-
-      <div class="tabs" role="tablist" aria-label="Industry tabs">
-        <button class="tab" role="tab" aria-selected="true"  aria-controls="uc-insurance"   id="tab-insurance">Insurance</button>
-        <button class="tab" role="tab" aria-selected="false" aria-controls="uc-banking"     id="tab-banking">Banking</button>
-        <button class="tab" role="tab" aria-selected="false" aria-controls="uc-retail"      id="tab-retail">Retail</button>
-        <button class="tab" role="tab" aria-selected="false" aria-controls="uc-fastfood"    id="tab-fastfood">Fast Food</button>
-        <button class="tab" role="tab" aria-selected="false" aria-controls="uc-cx"          id="tab-cx">Customer Service</button>
-        <button class="tab" role="tab" aria-selected="false" aria-controls="uc-oilandgas"   id="tab-oilandgas">Oil &amp; Gas</button>
-        <button class="tab" role="tab" aria-selected="false" aria-controls="uc-healthcare"  id="tab-healthcare">Healthcare</button>
-        <button class="tab" role="tab" aria-selected="false" aria-controls="uc-realestate"  id="tab-realestate">Real Estate</button>
-      </div>
-
-      <!-- Insurance -->
-      <div class="usecase active" id="uc-insurance" role="tabpanel" aria-labelledby="tab-insurance">
-        <div class="usecase-grid">
-          <div class="uc-card">
-            <h3>Insurance: Quote → KYC → Bind</h3>
-            <div>
-              <span class="pill"><i class="fa-solid fa-shield ok"></i> FNOL intake</span>
-              <span class="pill"><i class="fa-solid fa-user-check ok"></i> e-KYC workflow</span>
-              <span class="pill"><i class="fa-solid fa-file-signature ok"></i> Policy docs</span>
-            </div>
-            <ul class="list">
-              <li><i class="fa-solid fa-check"></i><span>Smart quote flow (auto/home/health) with premium range and upsell prompts.</span></li>
-              <li><i class="fa-solid fa-check"></i><span>BVN/ID capture & selfie check via secure link; auto-populate proposal forms.</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Claims FNOL: collect photos, geo, incident notes; route by policy & severity.</span></li>
-            </ul>
-            <div class="flow" aria-label="Sample conversation">
-              <div><b>Customer:</b> “I need car insurance for a 2018 Corolla.”</div>
-              <div><b>Bot:</b> “Third-party from ₦XXk/mo or Comprehensive from ₦XXk/mo. Want full coverage? I’ll collect a few details.”</div>
-              <div><b>Bot:</b> “Tap to verify BVN & upload license. ~2 mins.”</div>
-              <div><b>Bot:</b> “Done! Here’s your policy draft & payment link.”</div>
-            </div>
-            <div class="cta-row">
-              <a class="btn" href="#signup">Enable Insurance Blueprint</a>
-              <a class="btn" href="#faq">See KYC & Data FAQ</a>
-            </div>
-          </div>
-          <div class="aside">
-            <div class="mini-card">
-              <h4>Key Metrics</h4>
-              <div class="kv"><span class="k">Quote→Bind</span><b>+28–45%</b></div>
-              <div class="kv"><span class="k">FNOL time</span><b>-35%</b></div>
-              <div class="kv"><span class="k">Avg. premium</span><b>+12%</b></div>
-            </div>
-            <div class="mini-card">
-              <h4>Integrations</h4>
-              <p>Policy admin, payments, e-sign, ID/BVN verification.</p>
-            </div>
-          </div>
+  <main class="container">
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Made for African SMEs • NDPR‑aware</span>
+        <h1 class="title">Turn WhatsApp chats into <span class="grad">revenue</span>.</h1>
+        <p class="sub">ConnectCRM automates replies, collects orders, and sends payment links—so every chat becomes a sale or a solved issue. Launch in minutes. No code.</p>
+        <div class="hero-ctas">
+          <a class="btn primary" href="#builder">See the builder</a>
+          <a class="btn" href="#pricing">See pricing</a>
+        </div>
+        <div class="outcomes">
+          <div class="ok">+30–45% conversion</div>
+          <div class="ok">&lt; 3 min first response</div>
+          <div class="ok">99.9% availability</div>
+          <div class="ok">Works on low data</div>
         </div>
       </div>
 
-      <!-- Banking -->
-      <div class="usecase" id="uc-banking" role="tabpanel" aria-labelledby="tab-banking">
-        <div class="usecase-grid">
-          <div class="uc-card">
-            <h3>Banking: Acquisition & Servicing</h3>
-            <div>
-              <span class="pill"><i class="fa-solid fa-id-card-clip ok"></i> Account opening</span>
-              <span class="pill"><i class="fa-solid fa-sack-dollar ok"></i> Loan pre-screen</span>
-              <span class="pill"><i class="fa-solid fa-headset ok"></i> Tiered support</span>
-            </div>
-            <ul class="list">
-              <li><i class="fa-solid fa-check"></i><span>Micro-KYC for entry tiers; auto-escalate to full KYC with secure capture.</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Lead scoring for SMEs & retail; route to RM when intent = “apply”.</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Balance, card dispute, branch hours—handled via verified flows.</span></li>
-            </ul>
-            <div class="flow">
-              <div><b>Prospect:</b> “Open an account.”</div>
-              <div><b>Bot:</b> “Great—2 minute setup. Need selfie + ID. Ready?”</div>
-              <div><b>Bot:</b> “Account created. Here’s your virtual card. Physical card pickup location?”</div>
-            </div>
-            <div class="cta-row">
-              <a class="btn" href="#signup">Enable Banking Blueprint</a>
-              <a class="btn" href="#faq">Security & Data</a>
-            </div>
+      <!-- Product Blueprint Card -->
+      <div id="builder" class="screen">
+        <div class="screen-head">
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          <div class="tabs">
+            <button class="tab active" data-tab="qsr">Quick‑Service</button>
+            <button class="tab" data-tab="retail">Retail</button>
+            <button class="tab" data-tab="services">Services</button>
+            <button class="tab" data-tab="bank">Banking</button>
+            <button class="tab" data-tab="edu">Schools</button>
+            <button class="tab" data-tab="health">Clinics</button>
+            <button class="tab" data-tab="realestate">Real Estate</button>
+            <button class="tab" data-tab="logistics">Logistics</button>
           </div>
-          <div class="aside">
-            <div class="mini-card">
-              <h4>Key Metrics</h4>
-              <div class="kv"><span class="k">Acct. open time</span><b>-60%</b></div>
-              <div class="kv"><span class="k">Drop-offs</span><b>-35%</b></div>
-              <div class="kv"><span class="k">RM handoffs</span><b>Instant</b></div>
-            </div>
-            <div class="mini-card">
-              <h4>Compliance Aware</h4>
-              <p>Designed to align with NDPR and bank KYC policy. Configurable retention windows.</p>
-            </div>
+        </div>
+        <div class="canvas" style="padding:26px">
+          <!-- nodes (default QSR) -->
+          <div class="node" id="n1" style="left:18px; top:26px">
+            <h4>Start</h4>
+            <div class="pill">Customer says “Suya”</div>
+            <div class="row">Understands what they want</div>
           </div>
+          <div class="node" id="n2" style="left:320px; top:26px">
+            <h4>Ask</h4>
+            <div class="pill">How many? How spicy?</div>
+            <div class="row">Collects details neatly</div>
+          </div>
+          <div class="node" id="n3" style="left:620px; top:26px">
+            <h4>Create order</h4>
+            <div class="pill">Adds to queue</div>
+            <div class="row">No staff needed</div>
+          </div>
+          <div class="node" id="n4" style="left:320px; top:220px">
+            <h4>Pay</h4>
+            <div class="pill">Send payment link</div>
+            <div class="row">Transfer / Cards</div>
+          </div>
+          <div class="node" id="n5" style="left:620px; top:220px">
+            <h4>Done</h4>
+            <div class="pill">Receipt + pickup time</div>
+            <div class="row">Updates your sheet/app</div>
+          </div>
+          <svg class="wires" viewBox="0 0 900 420" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="g" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0%" stop-color="#6ee7ff"/><stop offset="100%" stop-color="#7c7eff"/>
+              </linearGradient>
+            </defs>
+            <path d="M 225 70 C 260 70 280 70 320 70" stroke="url(#g)" stroke-width="2.5" fill="none"/>
+            <path d="M 525 70 C 560 70 580 70 620 70" stroke="url(#g)" stroke-width="2.5" fill="none"/>
+            <path d="M 460 110 C 460 150 460 170 460 210" stroke="url(#g)" stroke-width="2.5" fill="none"/>
+            <path d="M 525 260 C 560 260 580 260 620 260" stroke="url(#g)" stroke-width="2.5" fill="none"/>
+          </svg>
         </div>
       </div>
+    </section>
 
-      <!-- Retail -->
-      <div class="usecase" id="uc-retail" role="tabpanel" aria-labelledby="tab-retail">
-        <div class="usecase-grid">
-          <div class="uc-card">
-            <h3>Retail: Catalog → Cart → Pay</h3>
-            <div>
-              <span class="pill"><i class="fa-solid fa-bag-shopping ok"></i> Product finder</span>
-              <span class="pill"><i class="fa-solid fa-truck-fast ok"></i> Delivery & pickup</span>
-              <span class="pill"><i class="fa-solid fa-arrows-rotate ok"></i> Returns</span>
-            </div>
-            <ul class="list">
-              <li><i class="fa-solid fa-check"></i><span>Send PDF/URL catalog; bot extracts sizes, variants, price.</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Cart building in chat; abandoned cart reminders.</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Payments via secure link; order tracking updates.</span></li>
-            </ul>
-            <div class="flow">
-              <div><b>Customer:</b> “Black polo in L?”</div>
-              <div><b>Bot:</b> “In stock. ₦12,500. Add to cart?”</div>
-              <div><b>Bot:</b> “Added. Checkout now or keep shopping?”</div>
-            </div>
-            <div class="cta-row">
-              <a class="btn" href="#signup">Enable Retail Blueprint</a>
-              <a class="btn" href="#pricing">View Plans</a>
-            </div>
-          </div>
-          <div class="aside">
-            <div class="mini-card">
-              <h4>Key Metrics</h4>
-              <div class="kv"><span class="k">AOV</span><b>+8–15%</b></div>
-              <div class="kv"><span class="k">Cart recovery</span><b>+22%</b></div>
-              <div class="kv"><span class="k">Reply time</span><b>&lt;3 min</b></div>
-            </div>
-            <div class="mini-card">
-              <h4>Ops</h4>
-              <p>Warehouse notes, stock alerts, and courier handoff messages baked in.</p>
-            </div>
-          </div>
-        </div>
+    <!-- ===== Value props (Africa-first) ===== -->
+    <section id="value" class="value">
+      <div class="card"><h3>No-code, truly.</h3><p>If you can broadcast on WhatsApp, you can ship a workflow. Your team owns it end‑to‑end.</p><span class="tag">Drag blocks. Press Deploy.</span></div>
+      <div class="card"><h3>Local payments built-in.</h3><p>Works with bank transfer confirmation, mobile money, and cards. Send tracked payment links in one tap.</p><span class="tag">Receipts in chat</span></div>
+      <div class="card"><h3>Built for patchy internet.</h3><p>Data‑light, mobile‑first. Customers get a fast response even on 3G.</p><span class="tag">Low data mode</span></div>
+    </section>
+
+    <!-- ===== Use cases grid ===== -->
+    <section id="usecases" class="usecases">
+      <h2 style="margin:8px 0 12px">Popular use cases across Africa</h2>
+      <div class="uc-grid">
+        <div class="ucard" data-tab="qsr"><h4>Restaurants & QSR</h4><p>Menu → Order → Pay → Pickup</p></div>
+        <div class="ucard" data-tab="retail"><h4>Retail & Fashion</h4><p>Catalog → Reserve → Pay → Dispatch</p></div>
+        <div class="ucard" data-tab="services"><h4>Home Services</h4><p>Inquiry → Schedule → Deposit → Job ticket</p></div>
+        <div class="ucard" data-tab="bank"><h4>Banking/Microfinance</h4><p>Lead → KYC → Account/Loan → Follow-up</p></div>
+        <div class="ucard" data-tab="edu"><h4>Schools</h4><p>Admission → Docs → Fees → Timetable</p></div>
+        <div class="ucard" data-tab="health"><h4>Clinics & Labs</h4><p>Appointment → Intake → Results → Reminder</p></div>
+        <div class="ucard" data-tab="realestate"><h4>Real Estate</h4><p>Enquiry → Viewing → Offer → Closing</p></div>
+        <div class="ucard" data-tab="logistics"><h4>Logistics/Courier</h4><p>Pickup → Tracking → Pay on delivery</p></div>
       </div>
+    </section>
 
-      <!-- Fast Food -->
-      <div class="usecase" id="uc-fastfood" role="tabpanel" aria-labelledby="tab-fastfood">
-        <div class="usecase-grid">
-          <div class="uc-card">
-            <h3>Fast Food: Menu → Order → Dispatch</h3>
-            <div>
-              <span class="pill"><i class="fa-solid fa-burger ok"></i> Menu parsing (PDF)</span>
-              <span class="pill"><i class="fa-solid fa-location-dot ok"></i> Store finder</span>
-              <span class="pill"><i class="fa-solid fa-stopwatch ok"></i> Prep & ETA</span>
-            </div>
-            <ul class="list">
-              <li><i class="fa-solid fa-check"></i><span>Understands combos, add-ons, and spice levels (e.g., Suya medium/hot).</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Supports pickup or delivery with fee transparency.</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Tracks order status; sends ready-for-pickup ping.</span></li>
-            </ul>
-            <div class="flow">
-              <div><b>Diner:</b> “Order 2 chicken suya, extra pepper.”</div>
-              <div><b>Bot:</b> “Got it. ₦5,800 total. Pickup at Victoria Island in 18–22 mins?”</div>
-              <div><b>Bot:</b> “Pay now or on pickup?”</div>
-            </div>
-            <div class="cta-row">
-              <a class="btn" href="#signup">Enable Fast-Food Blueprint</a>
-              <a class="btn" href="#testimonials">See Results</a>
-            </div>
-          </div>
-          <div class="aside">
-            <div class="mini-card">
-              <h4>Key Metrics</h4>
-              <div class="kv"><span class="k">Order speed</span><b>-40%</b></div>
-              <div class="kv"><span class="k">Repeat orders</span><b>+18%</b></div>
-              <div class="kv"><span class="k">Add-on attach</span><b>+25%</b></div>
-            </div>
-            <div class="mini-card">
-              <h4>Kitchen Mode</h4>
-              <p>Auto-print tickets, prep timers, and throttle when the line is slammed.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Customer Service -->
-      <div class="usecase" id="uc-cx" role="tabpanel" aria-labelledby="tab-cx">
-        <div class="usecase-grid">
-          <div class="uc-card">
-            <h3>Customer Service: Deflect → Triage → Resolve</h3>
-            <div>
-              <span class="pill"><i class="fa-solid fa-headset ok"></i> 24/7 bot + handoff</span>
-              <span class="pill"><i class="fa-solid fa-ticket ok"></i> Ticketing sync</span>
-              <span class="pill"><i class="fa-solid fa-chart-simple ok"></i> SLA tracking</span>
-            </div>
-            <ul class="list">
-              <li><i class="fa-solid fa-check"></i><span>Smart deflection from FAQs and policy lookups; fallbacks to live agent.</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Auto-triage by intent, sentiment, and priority; route to queues/skills.</span></li>
-              <li><i class="fa-solid fa-check"></i><span>CSAT pulse post-resolution; VoC tags feed into analytics.</span></li>
-            </ul>
-            <div class="flow">
-              <div><b>Customer:</b> “My order hasn’t arrived.”</div>
-              <div><b>Bot:</b> “Let me check… It’s out for delivery. Want SMS updates or connect to an agent?”</div>
-              <div><b>Bot:</b> “I’ve queued you for the delivery team (ETA 3 min).”</div>
-            </div>
-            <div class="cta-row">
-              <a class="btn" href="#signup">Enable Customer Service Blueprint</a>
-              <a class="btn" href="#faq">SLAs & Escalations</a>
-            </div>
-          </div>
-          <div class="aside">
-            <div class="mini-card">
-              <h4>Key Metrics</h4>
-              <div class="kv"><span class="k">Self-serve deflection</span><b>+25–40%</b></div>
-              <div class="kv"><span class="k">First response</span><b>&lt;2 min</b></div>
-              <div class="kv"><span class="k">CSAT</span><b>+12–20%</b></div>
-            </div>
-            <div class="mini-card">
-              <h4>Integrations</h4>
-              <p>Zendesk/Freshdesk, custom CRMs, SLA timers, knowledge base ingestion.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Oil & Gas -->
-      <div class="usecase" id="uc-oilandgas" role="tabpanel" aria-labelledby="tab-oilandgas">
-        <div class="usecase-grid">
-          <div class="uc-card">
-            <h3>Oil &amp; Gas: Order → Schedule → Proof</h3>
-            <div>
-              <span class="pill"><i class="fa-solid fa-gas-pump ok"></i> B2B fuel & lubes</span>
-              <span class="pill"><i class="fa-solid fa-truck ok"></i> Dispatch & POD</span>
-              <span class="pill"><i class="fa-solid fa-helmet-safety ok"></i> HSE incident</span>
-            </div>
-            <ul class="list">
-              <li><i class="fa-solid fa-check"></i><span>Clients place bulk orders via WhatsApp; contract pricing auto-applied.</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Depot & tanker scheduling with live status and driver handoff messages.</span></li>
-              <li><i class="fa-solid fa-check"></i><span>HSE incident intake: photos, geotag, category, severity; instant alerts.</span></li>
-            </ul>
-            <div class="flow">
-              <div><b>Buyer:</b> “Reorder 30k liters AGO for Apapa site.”</div>
-              <div><b>Bot:</b> “Price ₦XXX/ltr (contract). Dispatch window tomorrow 8–12? Need driver’s name & plate for gate pass?”</div>
-              <div><b>Bot:</b> “POD captured. Invoice sent to accounts.”</div>
-            </div>
-            <div class="cta-row">
-              <a class="btn" href="#signup">Enable Oil &amp; Gas Blueprint</a>
-              <a class="btn" href="#faq">Compliance & Data</a>
-            </div>
-          </div>
-          <div class="aside">
-            <div class="mini-card">
-              <h4>Key Metrics</h4>
-              <div class="kv"><span class="k">Order cycle time</span><b>-30–45%</b></div>
-              <div class="kv"><span class="k">POD accuracy</span><b>+20%</b></div>
-              <div class="kv"><span class="k">HSE reporting</span><b>Real-time</b></div>
-            </div>
-            <div class="mini-card">
-              <h4>Integrations</h4>
-              <p>ERP (pricing & inventory), depot scheduling, GPS/driver apps, finance invoicing.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Healthcare -->
-      <div class="usecase" id="uc-healthcare" role="tabpanel" aria-labelledby="tab-healthcare">
-        <div class="usecase-grid">
-          <div class="uc-card">
-            <h3>Healthcare: Book → Triage → Follow-up</h3>
-            <div>
-              <span class="pill"><i class="fa-solid fa-stethoscope ok"></i> Appointments</span>
-              <span class="pill"><i class="fa-solid fa-prescription-bottle-medical ok"></i> Rx refill</span>
-              <span class="pill"><i class="fa-solid fa-vial ok"></i> Lab results</span>
-            </div>
-            <ul class="list">
-              <li><i class="fa-solid fa-check"></i><span>Self-serve booking & reminders for clinics, dental, and pharmacies.</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Symptom triage with escalation rules; send pre-visit forms.</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Rx refills & lab result notifications with secure links.</span></li>
-            </ul>
-            <div class="flow">
-              <div><b>Patient:</b> “Need a dentist on Friday.”</div>
-              <div><b>Bot:</b> “Slots: 10:30, 12:00, 15:00. Pick one?”</div>
-              <div><b>Bot:</b> “Booked. I’ll remind you 24h/2h before. Need directions?”</div>
-            </div>
-            <div class="cta-row">
-              <a class="btn" href="#signup">Enable Healthcare Blueprint</a>
-              <a class="btn" href="#faq">Privacy & NDPR</a>
-            </div>
-          </div>
-          <div class="aside">
-            <div class="mini-card">
-              <h4>Key Metrics</h4>
-              <div class="kv"><span class="k">No-show rate</span><b>-25–35%</b></div>
-              <div class="kv"><span class="k">First response</span><b>&lt;5 min</b></div>
-              <div class="kv"><span class="k">Recall/Follow-ups</span><b>+18%</b></div>
-            </div>
-            <div class="mini-card">
-              <h4>Integrations</h4>
-              <p>EMR/EHR, HMO eligibility, payment links, lab/Rx systems.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Real Estate -->
-      <div class="usecase" id="uc-realestate" role="tabpanel" aria-labelledby="tab-realestate">
-        <div class="usecase-grid">
-          <div class="uc-card">
-            <h3>Real Estate: Enquiry → Qualify → Viewing</h3>
-            <div>
-              <span class="pill"><i class="fa-solid fa-house ok"></i> Property match</span>
-              <span class="pill"><i class="fa-solid fa-calendar-check ok"></i> Viewing scheduler</span>
-              <span class="pill"><i class="fa-solid fa-file-contract ok"></i> Docs & offers</span>
-            </div>
-            <ul class="list">
-              <li><i class="fa-solid fa-check"></i><span>Match buyers/tenants to listings by budget, beds, location, and amenities.</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Coordinate viewings, share maps, and send reminders automatically.</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Capture KYC, proof of funds, and route offers to agents instantly.</span></li>
-            </ul>
-            <div class="flow">
-              <div><b>Buyer:</b> “3-bed on the Island, ₦250m budget.”</div>
-              <div><b>Bot:</b> “Found 4 options in VI/Ikoyi. Want to see photos or schedule a viewing?”</div>
-              <div><b>Bot:</b> “Viewing booked for Sat 11:00. I’ll share location 1h prior.”</div>
-            </div>
-            <div class="cta-row">
-              <a class="btn" href="#signup">Enable Real Estate Blueprint</a>
-              <a class="btn" href="#pricing">Compare Plans</a>
-            </div>
-          </div>
-          <div class="aside">
-            <div class="mini-card">
-              <h4>Key Metrics</h4>
-              <div class="kv"><span class="k">Lead→Viewing</span><b>+30–45%</b></div>
-              <div class="kv"><span class="k">Days on market</span><b>-10–15%</b></div>
-              <div class="kv"><span class="k">Agent response</span><b>&lt;5 min</b></div>
-            </div>
-            <div class="mini-card">
-              <h4>Integrations</h4>
-              <p>Listing CMS/MLS, e-sign, payments, agent calendars, KYC.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Features -->
-  <section class="features" id="features">
-    <div class="container">
-      <h2>Powerful Features Built for Growth</h2>
-    <p class="sub">AI that feels human, workflows that scale, and a clean dashboard for your team.</p>
-      <div class="features-grid">
-        <div class="feature">
-          <div class="feature-icon"><i class="fas fa-robot"></i></div>
-          <h3>AI Automation</h3>
-          <p>Smart replies and automated follow-ups that feel human.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-icon"><i class="fas fa-bolt"></i></div>
-          <h3>Instant Lead Capture</h3>
-          <p>Every chat turns into a qualified lead automatically.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-icon"><i class="fas fa-route"></i></div>
-          <h3>Smart Routing</h3>
-          <p>Directs messages to the right agent based on skills and intent.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
-          <h3>Real-time Insights</h3>
-          <p>Live dashboard with performance metrics and trends.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-icon"><i class="fas fa-tasks"></i></div>
-          <h3>Workflow Automation</h3>
-          <p>Automate repetitive tasks, reminders, and approvals.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-icon"><i class="fas fa-comments"></i></div>
-          <h3>Team Collaboration</h3>
-          <p>Internal notes and seamless handoffs between agents.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Metrics -->
-  <section class="metrics">
-    <div class="container">
-      <div class="metrics-grid">
-        <div class="metric"><div class="number">+30%</div><p>Conversion uplift</p></div>
-        <div class="metric"><div class="number">-25%</div><p>Faster responses</p></div>
-        <div class="metric"><div class="number">+50%</div><p>More engagement</p></div>
-        <div class="metric"><div class="number">99.9%</div><p>Uptime</p></div>
-        <div class="metric"><div class="number">+85%</div><p>Capture rate (leads/chat)</p></div>
-        <div class="metric"><div class="number">+40%</div><p>Average deal size increase</p></div>
-        <div class="metric"><div class="number">&lt;3m</div><p>Typical reply time</p></div>
-        <div class="metric"><div class="number">+70%</div><p>Customer satisfaction score</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pricing -->
-  <section class="pricing" id="pricing">
-    <div class="container">
-      <h2>Simple, Transparent Pricing</h2>
-      <p class="sub">Choose the plan that fits your business. No hidden fees, cancel anytime.</p>
-      <div class="plans">
-        <div class="plan" onclick="selectPlan(0)">
-          <h4>Starter</h4>
-          <div class="price">₦15,000 <span>/month</span></div>
+    <!-- ===== Pricing ===== -->
+    <section id="pricing" class="pricing">
+      <h2 style="margin:8px 0 12px">Simple, transparent pricing</h2>
+      <p class="sub">Start free, grow as your conversations grow.</p>
+      <div class="tiers" style="margin-top:16px">
+        <div class="price-card">
+          <div class="muted">Starter</div>
+          <div class="price">₦25,000<span style="opacity:.6;font-weight:600;font-size:14px">/mo</span></div>
           <ul>
-            <li>Up to 500 chats/month</li>
-            <li>Basic automation</li>
-            <li>Lead capture</li>
-            <li>Email support</li>
-            <li>Basic reporting</li>
+            <li>500 chats</li>
+            <li>Workflow builder + templates</li>
+            <li>Basic analytics</li>
           </ul>
-          <button class="btn">Select Plan</button>
+          <a class="btn primary" href="#">Start</a>
         </div>
-        <div class="plan selected" onclick="selectPlan(1)">
-          <div style="position:absolute;top:0;right:0;background:var(--primary-start);color:#fff;padding:5px 12px;border-radius:0 0 0 12px;font-size:.8rem;font-weight:700">MOST POPULAR</div>
-          <h4>Professional</h4>
-          <div class="price">₦45,000 <span>/month</span></div>
+        <div class="price-card" style="outline:2px solid rgba(124,126,255,.35)">
+          <div class="muted">Growth</div>
+          <div class="price">₦45,000<span style="opacity:.6;font-weight:600;font-size:14px">/mo</span></div>
           <ul>
-            <li>Up to 2,000 chats/month</li>
-            <li>Advanced automation</li>
+            <li>2,000 chats</li>
             <li>Smart routing</li>
-            <li>Priority support</li>
-            <li>Advanced analytics</li>
-            <li>Team collaboration</li>
+            <li>Team seats + reports</li>
           </ul>
-          <button class="btn btn-primary">Select Plan</button>
+          <a class="btn primary" href="#">Go Growth</a>
         </div>
-        <div class="plan" onclick="selectPlan(2)">
-          <h4>Enterprise</h4>
+        <div class="price-card">
+          <div class="muted">Enterprise</div>
           <div class="price">Custom</div>
           <ul>
             <li>Unlimited chats</li>
-            <li>Custom automation</li>
-            <li>Dedicated account manager</li>
-            <li>24/7 support</li>
-            <li>API access</li>
-            <li>Custom reporting</li>
-            <li>White-label options</li>
+            <li>Dedicated success</li>
+            <li>Integrations & SSO</li>
           </ul>
-          <button class="btn">Contact Sales</button>
+          <a class="btn" href="#">Talk to sales</a>
         </div>
       </div>
-      <p style="text-align:center;margin-top:18px;font-size:.92rem;color:var(--muted)">All plans include a 14-day free trial with no credit card required.</p>
-    </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section id="faq" style="margin-top:26px" class="card">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:16px">
+        <div>
+          <h4>Can non‑technical teams use it?</h4>
+          <p class="sub">Yes. It’s designed for owner‑operators and frontline teams.</p>
+        </div>
+        <div>
+          <h4>Does it work with my bank?</h4>
+          <p class="sub">We support transfer confirmations, mobile money, and card links.</p>
+        </div>
+        <div>
+          <h4>What about handoffs?</h4>
+          <p class="sub">One tap brings a teammate in. Most chats never need it.</p>
+        </div>
+      </div>
+    </section>
+    <!-- ===== Contact ===== -->
+  <section id="contact" class="card contact">
+    <h2 style="margin:8px 0 12px">Contact us</h2>
+    <!-- modify this form HTML and place wherever you want your form -->
+    <form action="https://formspree.io/f/mzzvdlra" method="POST" class="cform">
+      <label>
+        <span>Your email</span>
+        <input type="email" name="email" required>
+      </label>
+      <label>
+        <span>Your message</span>
+        <textarea name="message" required></textarea>
+      </label>
+      <!-- your other form fields go here -->
+      <div>
+        <button class="btn primary" type="submit">Send</button>
+      </div>
+    </form>
   </section>
 
-  <!-- Testimonials -->
-  <section class="testimonials" id="testimonials">
-    <div class="container">
-      <h2>Trusted by Nigerian Businesses</h2>
-      <p class="sub">Don't just take our word for it—here's what our customers say.</p>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <div class="rating">★★★★★</div>
-          <p><em>"Since implementing ConnectCRM, our sales team has closed 40% more deals in the first month alone. The automated follow-ups are a game-changer!"</em></p>
-          <p><strong>Adunni Ojo</strong>, CEO, NexaServe</p>
-        </div>
-        <div class="testimonial-card">
-          <div class="rating">★★★★★</div>
-          <p><em>"Our customer response time went from hours to minutes. The smart routing ensures queries reach the right team instantly."</em></p>
-          <p><strong>Chinedu Okafor</strong>, Sales Director, NegaTrade</p>
-        </div>
-        <div class="testimonial-card">
-          <div class="rating">★★★★★</div>
-          <p><em>"The analytics dashboard helped us identify bottlenecks we didn't even know existed."</em></p>
-          <p><strong>Aisha Bello</strong>, Operations, AgroLink Africa</p>
-        </div>
-      </div>
-    </div>
-  </section>
+</main>
 
-  <!-- Signup -->
-  <section class="signup" id="signup">
-    <div class="container">
-      <h2>Start Your 14-Day Free Trial</h2>
-      <p class="sub" style="color:rgba(255,255,255,.92)">No credit card required. Get started in minutes.</p>
-
-      <form action="https://formspree.io/f/mzzvdlra" method="POST" onsubmit="return submitForm();">
-        <input type="hidden" id="planField" name="plan" value="Professional">
-        <label class="visually-hidden" for="name">Name</label>
-        <input id="name" type="text" name="name" placeholder="First & Last Name" required>
-        <label class="visually-hidden" for="company">Company</label>
-        <input id="company" type="text" name="company" placeholder="Company Name" required>
-        <label class="visually-hidden" for="email">Email</label>
-        <input id="email" type="email" name="email" placeholder="Email Address" required>
-        <label class="visually-hidden" for="phone">Phone</label>
-        <input id="phone" type="tel" name="phone" placeholder="Phone Number" required>
-        <label class="visually-hidden" for="biz">Business info</label>
-        <textarea id="biz" name="business_info" placeholder="Tell us about your business" rows="4" style="width:100%"></textarea>
-        <button class="btn btn-primary" type="submit">Start Professional Trial</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer id="contact">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <h3>ConnectCRM</h3>
-          <p>Transforming WhatsApp conversations into business growth for Nigerian companies.</p>
-          <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i><span class="visually-hidden">Facebook</span></a>
-            <a href="#"><i class="fab fa-twitter" aria-hidden="true"></i><span class="visually-hidden">Twitter</span></a>
-            <a href="#"><i class="fab fa-linkedin-in" aria-hidden="true"></i><span class="visually-hidden">LinkedIn</span></a>
-            <a href="#"><i class="fab fa-instagram" aria-hidden="true"></i><span class="visually-hidden">Instagram</span></a>
-          </div>
-        </div>
-        <div class="footer-col">
-          <h3>Product</h3>
-          <ul>
-            <li><a href="#solutions">Solutions</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h3>Resources</h3>
-          <ul>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Help Center</a></li>
-            <li><a href="#">API Documentation</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h3>Company</h3>
-          <ul>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Service</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h3>Contact</h3>
-          <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> 17 Keffi St, Lagos Island, Lagos</p>
-          <p><i class="fas fa-phone" aria-hidden="true"></i> +234 706 041 9725</p>
-          <p><i class="fas fa-envelope" aria-hidden="true"></i> info@234.ventures</p>
-        </div>
-      </div>
-      <div class="copyright">
-        <p>&copy; 2025 Oricell Internet Services Ltd. All rights reserved.</p>
-      </div>
+  <footer class="container">
+    <div class="foot">
+      <div>© 2025 Oricell Internet Services Ltd — Built for Africa</div>
+      <div style="display:flex;gap:12px"><a href="https://wa.me/2347060419725">WhatsApp</a> · <a href="mailto:info@234.ventures">Email</a></div>
     </div>
   </footer>
 
-  <!-- WhatsApp Button -->
-  <a href="https://wa.me/2347060419725" class="wa-button" aria-label="Chat on WhatsApp">
-    <i class="fab fa-whatsapp" aria-hidden="true"></i>
-  </a>
-
-  <!-- Exit Intent Popup -->
-  <div id="exitPopup" class="popup" role="dialog" aria-modal="true" aria-labelledby="exitPopupTitle" aria-hidden="true">
-    <div class="popup-content" role="document">
-      <button class="popup-close" onclick="closePopup()" aria-label="Close discount offer">&times;</button>
-      <h3 id="exitPopupTitle">Hold On—Enjoy 10% Off!</h3>
-      <p>Subscribe now to claim your exclusive discount code for the first three months.</p>
-
-      <form id="exitPopupForm">
-        <label for="popupEmail" class="visually-hidden">Email Address</label>
-        <input type="email" id="popupEmail" name="email" placeholder="you@example.com" required aria-required="true">
-        <button type="submit" class="btn btn-primary">Send My Discount</button>
-        <p id="popupStatus" role="status" aria-live="polite"></p>
-      </form>
-    </div>
-  </div>
-
   <script>
-    // Solutions tabs
+    // Theme toggle (remembers choice)
+    const btn = document.getElementById('themeBtn');
+    const pref = localStorage.getItem('theme') || 'dark';
+    if(pref==='light') document.body.setAttribute('data-theme','light');
+    btn.addEventListener('click',()=>{
+      const isLight = document.body.getAttribute('data-theme')==='light';
+      document.body.setAttribute('data-theme', isLight? '' : 'light');
+      localStorage.setItem('theme', isLight? 'dark':'light');
+    });
+
+    // Tab copy presets (5 nodes each)
     const tabs = document.querySelectorAll('.tab');
-    const panels = document.querySelectorAll('.usecase');
-    tabs.forEach(tab=>{
-      tab.addEventListener('click',()=>{
-        tabs.forEach(t=>t.setAttribute('aria-selected','false'));
-        panels.forEach(p=>p.classList.remove('active'));
-        tab.setAttribute('aria-selected','true');
-        const target = document.getElementById(tab.getAttribute('aria-controls'));
-        target.classList.add('active');
-        target.scrollIntoView({behavior:'smooth', block:'nearest'});
+    const copy = {
+      qsr:[['Start','Customer says “Suya”','Understands what they want'],['Ask','How many? How spicy?','Collects details neatly'],['Create order','Adds to queue','No staff needed'],['Pay','Send payment link','Transfer / Cards'],['Done','Receipt + pickup time','Updates your sheet/app']],
+      retail:[['Start','Customer asks “Price of shirt A?”','Understands the product'],['Ask','Size? Pickup or delivery?','Collects details'],['Reserve','Hold item for 2 hrs','Avoids stock outs'],['Pay','Send link or POS on pickup','Flexible options'],['Done','Receipt + delivery ETA','Customer notified']],
+      services:[['Start','“Need AC repair”','Understands service needed'],['Ask','Address + time','Collects details neatly'],['Schedule','Creates job ticket','Assigns technician'],['Pay','Deposit link','Secures booking'],['Done','Receipt + reminder','Auto follow‑up']],
+      bank:[['Start','“Open account / Loan”','Understands intent'],['Ask','BVN + ID','Collects KYC'],['Verify','Run quick checks','Approve / deny'],['Issue','Create account / Offer terms','Send details'],['Done','Welcome pack','Next steps in chat']],
+      edu:[['Start','“Admission inquiry”','Understands class & term'],['Ask','Name, guardian, grade','Collects details'],['Docs','Upload results/ID','Simple checklist'],['Fees','Send link / bank details','Track payment'],['Done','Timetable + reminders','Follow‑ups']],
+      health:[['Start','“Need lab test”','Understands test type'],['Ask','Name, date, branch','Collects details'],['Schedule','Book slot','Send prep guide'],['Pay','Link or on‑site','Confirm receipt'],['Done','Results ready','Send secure link']],
+      realestate:[['Start','“3‑bed in Lekki”','Understands budget/area'],['Ask','When to view?','Collects times'],['Schedule','Set appointment','Share location'],['Offer','Send template','Collect docs'],['Done','Close / next steps','Handover checklist']],
+      logistics:[['Start','“Pickup package”','Understands pickup/drop'],['Ask','Address + size','Collects details'],['Quote','Share price','Get approval'],['Dispatch','Assign rider','Live tracking'],['Done','Pay on delivery','Receipt in chat']]
+    };
+
+    function applyPreset(k){
+      const d = copy[k];
+      ['n1','n2','n3','n4','n5'].forEach((id,i)=>{
+        const n=document.getElementById(id);
+        n.querySelector('h4').textContent=d[i][0];
+        n.querySelector('.pill').textContent=d[i][1];
+        n.querySelector('.row').textContent=d[i][2];
+      });
+    }
+
+    tabs.forEach(t=>t.addEventListener('click',()=>{
+      tabs.forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      applyPreset(t.dataset.tab);
+    }));
+
+    // Use case cards click -> switch the builder tab
+    document.querySelectorAll('.ucard').forEach(card=>{
+      card.addEventListener('click',()=>{
+        const k = card.getAttribute('data-tab');
+        const t = Array.from(tabs).find(x=>x.dataset.tab===k);
+        if(t){ t.click(); window.scrollTo({top:document.getElementById('builder').getBoundingClientRect().top + window.scrollY - 80, behavior:'smooth'}); }
       });
     });
-
-    // Exit popup form submit
-    document.getElementById('exitPopupForm').addEventListener('submit', async function(e){
-      e.preventDefault();
-      const email = document.getElementById('popupEmail').value;
-      const statusEl = document.getElementById('popupStatus');
-      statusEl.textContent = 'Sending…';
-      try{
-        const res = await fetch('https://formspree.io/f/mzzvdlra',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})});
-        if(!res.ok) throw new Error(res.statusText);
-        statusEl.textContent = 'Success! Check your inbox for the code.';
-      }catch(err){
-        statusEl.textContent = 'Oops, something went wrong. Please try again.';
-        console.error(err);
-      }
-    });
-
-    // Plan selection
-    function selectPlan(index){
-      document.querySelectorAll('.plan').forEach((p,i)=>p.classList.toggle('selected',i===index));
-      const plan = ['Starter','Professional','Enterprise'][index];
-      document.getElementById('planField').value = plan;
-      document.querySelector('#signup form button').textContent = `Start ${plan} Trial`;
-      document.getElementById('signup').scrollIntoView({behavior:'smooth'});
-    }
-
-    // Form submission tracking
-    function submitForm(){
-      const plan = document.getElementById('planField').value;
-      if(!plan){ alert('Please select a plan first'); return false; }
-      if(typeof gtag!=='undefined'){ gtag('event','conversion',{'send_to':'AW-123456789/AbC-D_efG-h12'}); }
-      return true;
-    }
-
-    // FAQ toggle
-    function toggleFAQ(element){
-      element.classList.toggle('active');
-      const answer = element.nextElementSibling;
-      answer.classList.toggle('show');
-    }
-
-    // Exit intent popup
-    document.addEventListener('mouseout',(e)=>{
-      if(!e.toElement && !e.relatedTarget && !localStorage.getItem('popupShown')){
-        document.getElementById('exitPopup').style.display='flex';
-        localStorage.setItem('popupShown','true');
-      }
-    });
-    function closePopup(){ document.getElementById('exitPopup').style.display='none'; }
-
-    // Simple scroll reveal
-    document.addEventListener('DOMContentLoaded',function(){
-      const els = document.querySelectorAll('.feature,.metric,.plan,.uc-card,.mini-card');
-      const onScroll=()=>{
-        els.forEach(el=>{
-          const top = el.getBoundingClientRect().top;
-          if(top < window.innerHeight*0.85){ el.style.transition='transform .5s, opacity .5s'; el.style.transform='translateY(0)'; el.style.opacity='1'; }
-          else{ el.style.transform='translateY(12px)'; el.style.opacity='.0'; }
-        });
-      };
-      onScroll();
-      window.addEventListener('scroll',onScroll,{passive:true});
-    });
-  </script>
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Product",
-    "name":"ConnectCRM",
-    "description":"WhatsApp CRM automation platform for Nigerian businesses",
-    "brand":{"@type":"Brand","name":"Oricell"},
-    "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"87"},
-    "offers":{"@type":"AggregateOffer","offerCount":"3","lowPrice":"15000","highPrice":"45000","priceCurrency":"NGN"}
-  }
   </script>
 </body>
 </html>
